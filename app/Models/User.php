@@ -32,9 +32,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'login',
-        'password',
-        'created_at',
-        'updated_at',
+        'password'
     ];
 
     /**
@@ -46,7 +44,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'two_factor_recovery_codes',
-        'two_factor_secret',
+        'two_factor_secret'
     ];
 
     /**
@@ -55,7 +53,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $appends = [
-        'profile_photo_url',
+        'profile_photo_url'
     ];
 
     /**
@@ -67,17 +65,17 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password' => 'hashed'
         ];
     }
 
     public function Reservation()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class('user_id'));
     }
 
     public function Setting()
     {
-        return $this->hasMany(Setting::class);
+        return $this->hasMany(Setting::class('user_id'));
     }
 }

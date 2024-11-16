@@ -9,10 +9,10 @@ class Image extends Model
     protected $fillable = [
         'path',
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
     public function Event()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class('event_id'));
     }
 }

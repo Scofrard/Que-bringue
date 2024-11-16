@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     protected $fillable = [
-        'seats',
+        'seats'
     ];
 
     public function User()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class('user_id'));
     }
     public function Event()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class('event_id'));
     }
 }

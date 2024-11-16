@@ -15,3 +15,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
