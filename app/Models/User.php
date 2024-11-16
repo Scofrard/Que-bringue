@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,8 +28,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'firstname',
         'email',
+        'phone',
+        'login',
         'password',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -63,5 +69,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function Reservation()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function Setting()
+    {
+        return $this->hasMany(Setting::class);
     }
 }
