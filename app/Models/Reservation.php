@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
-
     protected $fillable = [
         'seats',
     ];
@@ -15,7 +14,6 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public function Event()
     {
         return $this->belongsTo(Event::class);

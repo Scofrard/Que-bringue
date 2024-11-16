@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Localisation extends Model
 {
-    //
+    protected $fillable = [
+        'latitude',
+        'longitude',
+    ];
+    public function Event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }
