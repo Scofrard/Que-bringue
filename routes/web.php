@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,4 +20,9 @@ Route::middleware([
 
 Route::get('/greeting', function () {
     return 'Hello World';
+});
+
+//user.index
+Route::controller(UserController::class)->name('user.')->group(function () {
+    Route::get('/users', 'show')->name('index');
 });
