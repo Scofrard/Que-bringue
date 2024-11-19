@@ -11,7 +11,15 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-
+    @foreach ($users as $user)
+    <ul>
+        <li>id : {{ $user->id }}</li>
+        <li>name : {{ $user->name }}</li>
+        <li>email : {{ $user->email }}</li>
+    </ul>
+    <p>name : {{ $user->name }}</p>
+    <a href="{{ route('user.show', $user->id) }} ">Détails de l'utilisateur</a>
+    @endforeach
 </body>
 
 </html>

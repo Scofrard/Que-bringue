@@ -32,12 +32,12 @@ Route::get('/greeting', function () {
 //User
 Route::controller(UserController::class)->name('user.')->group(function () {
     Route::get('/users', 'index')->name('index');
-    Route::get('/users', 'create')->name('create');
-    Route::get('/users', 'destroy')->name('destroy');
-    Route::get('/users', 'update')->name('update');
-    Route::get('/users', 'edit')->name('edit');
-    Route::get('/users', 'show')->name('show');
-    Route::get('/users', 'store')->name('store');
+    Route::get('/user/{id}', 'show')->name('show');
+    Route::get('/user', 'create')->name('create');
+    Route::get('/user', 'destroy')->name('destroy');
+    Route::get('/user', 'update')->name('update');
+    Route::get('/user', 'edit')->name('edit');
+    Route::get('/user', 'store')->name('store');
 });
 
 //Reservation
