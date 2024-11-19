@@ -26,32 +26,32 @@ Route::get('/greeting', function () {
 
 //User
 Route::controller(UserController::class)->name('user.')->group(function () {
-    Route::get('/users', 'show')->name('index');
-    Route::get('/users', 'show')->name('create');
-    Route::get('/users', 'show')->name('destroy');
-    Route::get('/users', 'show')->name('update');
-    Route::get('/users', 'show')->name('edit');
+    Route::get('/users', 'index')->name('index');
+    Route::get('/users', 'create')->name('create');
+    Route::get('/users', 'destroy')->name('destroy');
+    Route::get('/users', 'update')->name('update');
+    Route::get('/users', 'edit')->name('edit');
     Route::get('/users', 'show')->name('show');
-    Route::get('/users', 'show')->name('store');
+    Route::get('/users', 'store')->name('store');
 });
 
 //Reservation
 Route::controller(ReservationController::class)->name('reservation.')->group(function () {
-    Route::get('/reservation', 'show')->name('index');
-    Route::get('/reservation', 'show')->name('create');
-    Route::get('/reservation', 'show')->name('destroy');
-    Route::get('/reservation', 'show')->name('update');
-    Route::get('/reservation', 'show')->name('edit');
+    Route::get('/reservation', 'index')->name('index');
+    Route::get('/reservation', 'create')->name('create');
+    Route::get('/reservation', 'destroy')->name('destroy');
+    Route::get('/reservation', 'update')->name('update');
+    Route::get('/reservation', 'edit')->name('edit');
     Route::get('/reservation', 'show')->name('show');
-    Route::get('/reservation', 'show')->name('store');
+    Route::get('/reservation', 'store')->name('store');
 });
 
 Route::controller(EventController::class)->name('event.')->group(function () {
-    Route::get('/event', 'show')->name('index');
-    Route::get('/event', 'show')->name('create');
-    Route::get('/event', 'show')->name('destroy');
-    Route::get('/event', 'show')->name('update');
-    Route::get('/event', 'show')->name('edit');
+    Route::get('/event', 'index')->name('index');
+    Route::get('/event', 'create')->name('create');
+    Route::get('/event', 'destroy')->name('destroy');
+    Route::get('/event', 'update')->name('update');
+    Route::get('/event', 'edit')->name('edit');
     Route::get('/event', 'show')->name('show');
-    Route::get('/event', 'show')->name('store');
+    Route::get('/event', 'store')->name('store');
 });
