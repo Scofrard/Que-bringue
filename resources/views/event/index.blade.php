@@ -11,7 +11,19 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-
+    @foreach ($events as $event)
+    <ul>
+        <li>id : {{ $event->id }}</li>
+        <li>Nom : {{ $event->name }}</li>
+        <li>Dates : {{ $event->date }}</li>
+    </ul>
+    <a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
+    <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
+    <form action="{{ route('event.destroy' , $event->id) }}" method="DELETE">
+        @csrf
+        <button type="submit">Supprimer l'événement</button>
+    </form>
+    @endforeach
 </body>
 
 </html>

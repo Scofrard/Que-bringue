@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
 
 class EventController extends Controller
 {
@@ -11,23 +12,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $events = Event::all();
+        return view('event.index', compact('events'));
     }
 
     /**
@@ -35,15 +21,50 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.show', compact('event'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('event.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'seats' => 'required',
+            'date' => 'required',
+        ]);
+
+        $event = new Event();
+
+        $event->name = $validated['name'];
+        $event->description = $validated['description']; // Utilisez input() pour obtenir la valeur du champ description;
+        $event->seats = $validated['seats'];
+        $event->date = $validated['date'];
+
+        $event->save();
+
+        return redirect()->route('event.index');
+    }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.edit', compact('event'));
     }
 
     /**
@@ -59,6 +80,8 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->delete();
+        return redirect()->route('event.index');
     }
 }

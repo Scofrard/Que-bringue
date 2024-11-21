@@ -24,11 +24,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
-Route::get('/greeting', function () {
-    return 'Hello World';
-});
-
 //User
 Route::controller(UserController::class)->name('user.')->group(function () {
     Route::get('/users', 'index')->name('index');
@@ -37,7 +32,7 @@ Route::controller(UserController::class)->name('user.')->group(function () {
     Route::get('/user', 'destroy')->name('destroy');
     Route::get('/user', 'update')->name('update');
     Route::get('/user', 'edit')->name('edit');
-    Route::get('/user', 'store')->name('store');
+    Route::post('/user/store', 'store')->name('store');
 });
 
 //Reservation
@@ -48,17 +43,17 @@ Route::controller(ReservationController::class)->name('reservation.')->group(fun
     Route::get('/reservation', 'update')->name('update');
     Route::get('/reservation', 'edit')->name('edit');
     Route::get('/reservation', 'show')->name('show');
-    Route::get('/reservation', 'store')->name('store');
+    Route::post('/reservation/store', 'store')->name('store');
 });
 
 Route::controller(EventController::class)->name('event.')->group(function () {
-    Route::get('/event', 'index')->name('index');
-    Route::get('/event', 'create')->name('create');
-    Route::get('/event', 'destroy')->name('destroy');
-    Route::get('/event', 'update')->name('update');
-    Route::get('/event', 'edit')->name('edit');
-    Route::get('/event', 'show')->name('show');
-    Route::get('/event', 'store')->name('store');
+    Route::get('/events', 'index')->name('index');
+    Route::get('/event/create', 'create')->name('create');
+    Route::delete('/event/destroy/{id}', 'destroy')->name('destroy');
+    Route::get('/event/edit/{id}', 'edit')->name('edit');
+    Route::get('/event/update', 'update')->name('update');
+    Route::get('/event/{id}', 'show')->name('show');
+    Route::post('/event/store', 'store')->name('store');
 });
 
 Route::controller(SettingController::class)->name('setting.')->group(function () {
@@ -68,7 +63,7 @@ Route::controller(SettingController::class)->name('setting.')->group(function ()
     Route::get('/setting', 'update')->name('update');
     Route::get('/setting', 'edit')->name('edit');
     Route::get('/setting', 'show')->name('show');
-    Route::get('/setting', 'store')->name('store');
+    Route::post('/setting/store', 'store')->name('store');
 });
 
 Route::controller(LocalisationController::class)->name('localisation.')->group(function () {
@@ -78,7 +73,7 @@ Route::controller(LocalisationController::class)->name('localisation.')->group(f
     Route::get('/localisation', 'update')->name('update');
     Route::get('/localisation', 'edit')->name('edit');
     Route::get('/localisation', 'show')->name('show');
-    Route::get('/localisation', 'store')->name('store');
+    Route::post('/localisation/store', 'store')->name('store');
 });
 
 Route::controller(ImageController::class)->name('image.')->group(function () {
@@ -88,7 +83,7 @@ Route::controller(ImageController::class)->name('image.')->group(function () {
     Route::get('/image', 'update')->name('update');
     Route::get('/image', 'edit')->name('edit');
     Route::get('/image', 'show')->name('show');
-    Route::get('/image', 'store')->name('store');
+    Route::post('/image/store', 'store')->name('store');
 });
 
 Route::controller(CategoryController::class)->name('category.')->group(function () {
@@ -98,7 +93,7 @@ Route::controller(CategoryController::class)->name('category.')->group(function 
     Route::get('/category', 'update')->name('update');
     Route::get('/category', 'edit')->name('edit');
     Route::get('/category', 'show')->name('show');
-    Route::get('/category', 'store')->name('store');
+    Route::post('/category/store', 'store')->name('store');
 });
 
 Route::controller(CategoryEventController::class)->name('categoryevent.')->group(function () {
@@ -108,5 +103,5 @@ Route::controller(CategoryEventController::class)->name('categoryevent.')->group
     Route::get('/categoryevent', 'update')->name('update');
     Route::get('/categoryevent', 'edit')->name('edit');
     Route::get('/categoryevent', 'show')->name('show');
-    Route::get('/categoryevent', 'store')->name('store');
+    Route::post('/categoryevent/store', 'store')->name('store');
 });
