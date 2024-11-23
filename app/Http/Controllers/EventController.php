@@ -72,7 +72,16 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+
+        $event->name = $event->name !== $request->name ? $request->name : $event->name;
+        $event->description = $event->description !== $request->description ? $request->description : $event->description;
+        $event->seats = $event->seats !== $request->seats ? $request->seats : $event->seats;
+        $event->date = $event->date !== $request->date ? $request->date : $event->date;
+
+        $event->save();
+
+        return redirect()->route('event.index');
     }
 
     /**
@@ -80,7 +89,7 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         $event->delete();
         return redirect()->route('event.index');
     }

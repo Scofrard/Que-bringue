@@ -51,7 +51,7 @@ Route::controller(EventController::class)->name('event.')->group(function () {
     Route::get('/event/create', 'create')->name('create');
     Route::delete('/event/destroy/{id}', 'destroy')->name('destroy');
     Route::get('/event/edit/{id}', 'edit')->name('edit');
-    Route::get('/event/update', 'update')->name('update');
+    Route::post('/event/update/{id}', 'update')->name('update');
     Route::get('/event/{id}', 'show')->name('show');
     Route::post('/event/store', 'store')->name('store');
 });
