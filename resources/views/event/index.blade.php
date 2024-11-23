@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <a href="{{ route('event.create') }}">Créer un nouvel événement</a>
     @foreach ($events as $event)
     <ul>
         <li>id : {{ $event->id }}</li>

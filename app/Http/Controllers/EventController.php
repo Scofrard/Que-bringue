@@ -34,7 +34,7 @@ class EventController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('event.create');
+        return view('event.create', compact('categories'));
     }
 
     /**
@@ -58,7 +58,10 @@ class EventController extends Controller
         $event->seats = $validated['seats'];
         $event->date = $validated['date'];
 
-        $event->save();
+        //$event->save();
+        dd($event);
+        dd($categories);
+        $event->categories()->sync($validated['categories']);
 
         return redirect()->route('event.index');
     }
