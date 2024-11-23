@@ -103,5 +103,5 @@ Route::controller(CategoryEventController::class)->name('categoryevent.')->group
     Route::get('/categoryevent', 'update')->name('update');
     Route::get('/categoryevent', 'edit')->name('edit');
     Route::get('/categoryevent', 'show')->name('show');
-    Route::post('/categoryevent/store', 'store')->name('store');
+    Route::get('/categoryevent/store', 'store')->name('store');
 });

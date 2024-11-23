@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryEvent extends Model
 {
+
+    protected $fillable = [
+        'event_id',
+        'category_id',
+    ];
     public function Event()
     {
         return $this->belongsTo(Event::class('event_id'));

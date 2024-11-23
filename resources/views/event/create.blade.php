@@ -16,8 +16,8 @@
         <input type="text" id="name" name="name" placeholder="Nom" required>
         <input type="text" id="description" name="description" placeholder="Description" required>
         <input type="text" id="seats" name="seats" placeholder="Sièges" required>
-        <input type="text" id="date" name="date" placeholder="Dates" required>
-        <select name="categories" multiple>
+        <input type="text" id="date" name="date" placeholder="Date" required>
+        <select name="categories[]" multiple>
             @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach

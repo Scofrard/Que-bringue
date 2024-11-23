@@ -11,13 +11,9 @@ class Category extends Model
         'created_at',
         'updated_at',
     ];
-    /*public function CategoryEvent()
+
+    public function CategoryEvent()
     {
         return $this->hasMany(CategoryEvent::class('category_id'));
-    }*/
-
-    public function events()
-    {
-        return $this->belongsToMany(Event::class, 'category_event', 'category_id', 'event_id');
     }
 }

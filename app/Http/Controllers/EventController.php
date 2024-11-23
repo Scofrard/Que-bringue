@@ -34,6 +34,7 @@ class EventController extends Controller
     public function create()
     {
         $categories = Category::all();
+        //dd($categories);
         return view('event.create', compact('categories'));
     }
 
@@ -48,22 +49,19 @@ class EventController extends Controller
             'seats' => 'required',
             'date' => 'required',
             'categories' => 'required|array',
-            'categories.*' => 'exists:categories,id',
+            'categories.*' => 'integer|exists:categories,id',
         ]);
 
         $event = new Event();
 
         $event->name = $validated['name'];
-        $event->description = $validated['description']; // Utilisez input() pour obtenir la valeur du champ description;
+        $event->description = $validated['description'];
         $event->seats = $validated['seats'];
         $event->date = $validated['date'];
 
-        //$event->save();
-        dd($event);
-        dd($categories);
-        $event->categories()->sync($validated['categories']);
+        $event->save();
 
-        return redirect()->route('event.index');
+        return redirect()->route('categoryevent.store', ['event_id' => $event->id, 'categories' => $validated['categories']]);
     }
 
 
