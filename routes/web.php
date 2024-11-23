@@ -87,12 +87,12 @@ Route::controller(ImageController::class)->name('image.')->group(function () {
 });
 
 Route::controller(CategoryController::class)->name('category.')->group(function () {
-    Route::get('/category', 'index')->name('index');
+    Route::get('/categories', 'index')->name('index');
     Route::get('/category', 'create')->name('create');
     Route::get('/category', 'destroy')->name('destroy');
     Route::get('/category', 'update')->name('update');
     Route::get('/category', 'edit')->name('edit');
-    Route::get('/category', 'show')->name('show');
+    Route::get('/category/{id}', 'show')->name('show');
     Route::post('/category/store', 'store')->name('store');
 });
 

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="fr">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
-
+<body>
+    <h1>Liste des catégories</h1>
+    <ul>
+        @foreach ($categories as $category)
+        <li>{{ $category->name }}</li>
+        @endforeach
+    </ul>
 </body>
 
 </html>
