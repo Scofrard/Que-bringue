@@ -17,7 +17,10 @@
         <li>Nom : {{ $event->name }}</li>
         <li>Description : {{ $event->description }}</li>
         <li>Sièges : {{ $event->seats }}</li>
-        <li>Dates : {{ $event->date }}</li>
+        <li>Date : {{ $event->date }}</li>
+        @foreach ($event->categories as $category)
+        <li>Catégorie(s) : {{ $category->name }}</li>
+        @endforeach
     </ul>
     <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
 </body>

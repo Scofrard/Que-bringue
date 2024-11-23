@@ -25,8 +25,13 @@ class Event extends Model
     {
         return $this->hasOne(Localisation::class('event_id'));
     }
-    public function CategoryEvent()
+    /*public function CategoryEvent()
     {
         return $this->hasMany(CategoryEvent::class('event_id'));
+    }*/
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_event', 'event_id', 'category_id');
     }
 }

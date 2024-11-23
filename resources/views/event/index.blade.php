@@ -15,7 +15,10 @@
     <ul>
         <li>id : {{ $event->id }}</li>
         <li>Nom : {{ $event->name }}</li>
-        <li>Dates : {{ $event->date }}</li>
+        <li>Date : {{ $event->date }}</li>
+        @foreach ($event->categories as $category)
+        <li>{{ $category->name }}</li>
+        @endforeach
     </ul>
     <a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
     <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>

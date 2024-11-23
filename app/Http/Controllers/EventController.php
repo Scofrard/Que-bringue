@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Category;
 
 class EventController extends Controller
 {
@@ -12,7 +13,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        //$events = Event::all();
+        $events = Event::with('categories')->get();
+        //dd($events);
         return view('event.index', compact('events'));
     }
 
@@ -30,6 +33,7 @@ class EventController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         return view('event.create');
     }
 
@@ -43,6 +47,8 @@ class EventController extends Controller
             'description' => 'required',
             'seats' => 'required',
             'date' => 'required',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
         ]);
 
         $event = new Event();
