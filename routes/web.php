@@ -10,9 +10,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryEventController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::middleware([
     'auth:sanctum',
@@ -37,7 +37,7 @@ Route::controller(UserController::class)->name('user.')->group(function () {
 
 //Reservation
 Route::controller(ReservationController::class)->name('reservation.')->group(function () {
-    Route::get('/reservation', 'index')->name('index');
+    Route::get('/reservation', 'index')->name('index')->name('welcome');
     Route::get('/reservation', 'create')->name('create');
     Route::get('/reservation', 'destroy')->name('destroy');
     Route::get('/reservation', 'update')->name('update');
@@ -47,6 +47,7 @@ Route::controller(ReservationController::class)->name('reservation.')->group(fun
 });
 
 Route::controller(EventController::class)->name('event.')->group(function () {
+    Route::get('/', 'index')->name('home');
     Route::get('/events', 'index')->name('index');
     Route::get('/event/create', 'create')->name('create');
     Route::delete('/event/destroy/{id}', 'destroy')->name('destroy');

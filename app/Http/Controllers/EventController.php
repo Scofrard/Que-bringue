@@ -15,9 +15,13 @@ class EventController extends Controller
     {
         $events = Event::all();
         $categories = Category::all();
-        $events = Event::with('categories')->get();
-        //dd($events);
-        return view('event.index', compact('events'));
+
+        $eventsCategoryEnCouple = Event::whereHas('categories', function ($query) {
+            $query->where('categories.name', 'En couple');
+        })->get();
+        //dd($eventsCategoryEnCouple);
+
+        return view('event.index', compact('events', 'eventsCategoryEnCouple'));
     }
 
     /**
@@ -25,7 +29,7 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         return view('event.show', compact('event'));
     }
 
@@ -35,7 +39,6 @@ class EventController extends Controller
     public function create()
     {
         $categories = Category::all();
-        //dd($categories);
         return view('event.create', compact('categories'));
     }
 
@@ -53,7 +56,6 @@ class EventController extends Controller
             'categories.*' => 'integer|exists:categories,id',
         ]);
 
-
         $event = Event::create($validated);
         $event->categories()->attach($validated['categories']);
 
@@ -66,8 +68,9 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        $event = Event::find($id);
-        return view('event.edit', compact('event'));
+        $event = Event::findOrFail($id);
+        $categories = Category::all();
+        return view('event.edit', compact('event', 'categories'));
     }
 
     /**

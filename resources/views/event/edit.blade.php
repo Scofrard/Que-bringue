@@ -19,6 +19,14 @@
         <input type="text" id="description" name="description" placeholder="Description" value="{{ $event->description }}" required>
         <input type="text" id="seats" name="seats" placeholder="Sièges" value="{{ $event->seats }}" required>
         <input type="text" id="date" name="date" placeholder="Dates" value="{{ $event->date }}" required>
+        <select name="categories[]" multiple>
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}"
+                {{ in_array($category->id, $event->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
         <button type="submit">Modifier</button>
     </form>
 </body>
