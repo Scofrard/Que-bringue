@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
+use App\Models\DTOEvent;
 
 class EventController extends Controller
 {
@@ -13,10 +14,17 @@ class EventController extends Controller
      */
     public function index()
     {
-        //$events = Event::all();
-        $events = Event::with('categories')->get();
+        $events = Event::all();
+        $categories = Category::all();
+        $eventsWithCategories = [];
+        foreach ($events as $event) {
+            $dtoEvent = new DTOEvent($event);
+            $return = $dtoEvent->getCategoriesOfEvent($categories);
+            //dd($return);
+        }
+        //$events = Event::with('categories')->get();
         //dd($events);
-        return view('event.index', compact('events'));
+        return view('event.index', compact('dtoEvent'));
     }
 
     /**

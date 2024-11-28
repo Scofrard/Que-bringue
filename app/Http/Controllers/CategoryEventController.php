@@ -35,7 +35,7 @@ class CategoryEventController extends Controller
             'categories.*' => 'exists:categories,id',
         ]);
 
-        dd($validated);
+        //dd($validated);
         //Erreur : SQLSTATE[HY000]: General error: 1 no such table: category_events (Connection: sqlite, SQL: insert into "category_events" ("event_id", "category_id", "updated_at", "created_at") values (6, 2, 2024-11-23 16:26:37, 2024-11-23 16:26:37))
 
         // Sauvegarde dans la table intermédiaire
