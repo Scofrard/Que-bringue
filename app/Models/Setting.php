@@ -10,7 +10,7 @@ class Setting extends Model
         'is_subscribe_newsletter'
     ];
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

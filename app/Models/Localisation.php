@@ -10,7 +10,7 @@ class Localisation extends Model
         'latitude',
         'longitude'
     ];
-    public function Event()
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
