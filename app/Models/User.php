@@ -71,11 +71,11 @@ class User extends Authenticatable
 
     public function Reservation()
     {
-        return $this->hasMany(Reservation::class('user_id'));
+        return $this->hasMany(Reservation::class);
     }
 
     public function Setting()
     {
-        return $this->hasMany(Setting::class('user_id'));
+        return $this->hasMany(Setting::class);
     }
 }

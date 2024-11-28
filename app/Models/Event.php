@@ -13,20 +13,23 @@ class Event extends Model
         'seats'
     ];
 
-    public function Reservation()
+    public function reservations()
     {
         return $this->hasMany(Reservation::class('event_id'));
     }
-    public function Image()
+
+    public function images()
     {
-        return $this->hasMany(Image::class('event_id'));
+        return $this->hasMany(Image::class);
     }
-    public function Localisation()
+
+    public function localisation()
     {
-        return $this->hasOne(Localisation::class('event_id'));
+        return $this->hasOne(Localisation::class);
     }
-    public function CategoryEvent()
+
+    public function categories()
     {
-        return $this->hasMany(CategoryEvent::class('event_id'));
+        return $this->belongsToMany(Category::class, 'category_event');
     }
 }

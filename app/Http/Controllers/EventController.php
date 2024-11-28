@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
-use App\Models\DTOEvent;
 
 class EventController extends Controller
 {
@@ -16,15 +15,9 @@ class EventController extends Controller
     {
         $events = Event::all();
         $categories = Category::all();
-        $eventsWithCategories = [];
-        foreach ($events as $event) {
-            $dtoEvent = new DTOEvent($event);
-            $return = $dtoEvent->getCategoriesOfEvent($categories);
-            //dd($return);
-        }
-        //$events = Event::with('categories')->get();
+        $events = Event::with('categories')->get();
         //dd($events);
-        return view('event.index', compact('dtoEvent'));
+        return view('event.index', compact('events'));
     }
 
     /**
@@ -60,16 +53,11 @@ class EventController extends Controller
             'categories.*' => 'integer|exists:categories,id',
         ]);
 
-        $event = new Event();
 
-        $event->name = $validated['name'];
-        $event->description = $validated['description'];
-        $event->seats = $validated['seats'];
-        $event->date = $validated['date'];
+        $event = Event::create($validated);
+        $event->categories()->attach($validated['categories']);
 
-        $event->save();
-
-        return redirect()->route('categoryevent.store', ['event_id' => $event->id, 'categories' => $validated['categories']]);
+        return redirect()->route('event.index');
     }
 
 

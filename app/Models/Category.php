@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+
     protected $fillable = [
         'name',
         'created_at',
         'updated_at',
     ];
 
-    public function CategoryEvent()
+    public function events()
     {
-        return $this->hasMany(CategoryEvent::class('category_id'));
+        return $this->belongsToMany(Event::class, 'category_event');
     }
 }
