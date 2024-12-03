@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Localisation extends Model
 {
+    protected $table = 'localisation';
     protected $fillable = [
+        'full_address',
         'latitude',
         'longitude'
     ];

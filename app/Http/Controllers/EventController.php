@@ -16,6 +16,7 @@ class EventController extends Controller
     {
         $events = Event::all();
         $categories = Category::all();
+        $localisations = Localisation::all();
 
         $eventsCategoryEnCouple = Event::whereHas('categories', function ($query) {
             $query->where('categories.name', 'En couple');
@@ -65,8 +66,9 @@ class EventController extends Controller
 
         $localisation = new Localisation();
         $localisation->event_id = $event->id;
-        $localisation->latitude = $request->input('latitude');
-        $localisation->longitude = $request->input('longitude');
+        $localisation->full_address = $request->input('address-input');
+        $localisation->latitude = $request->input('address-latitude');
+        $localisation->longitude = $request->input('address-longitude');
         $localisation->save();
 
         return redirect()->route('event.index');

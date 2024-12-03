@@ -21,6 +21,7 @@
         @foreach ($event->categories as $category)
         <li>Catégorie(s) : {{ $category->name }}</li>
         @endforeach
+        <li>Adresse : {{ $event->localisation->full_address }}</li>
     </ul>
     <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
 </body>
