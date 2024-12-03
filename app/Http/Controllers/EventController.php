@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
+use App\Models\Localisation;
 
 class EventController extends Controller
 {
@@ -52,12 +53,21 @@ class EventController extends Controller
             'description' => 'required',
             'seats' => 'required',
             'date' => 'required',
+            'address-input' => 'required',
+            'address-latitude' => 'required',
+            'address-longitude' => 'required',
             'categories' => 'required|array',
             'categories.*' => 'integer|exists:categories,id',
         ]);
 
         $event = Event::create($validated);
         $event->categories()->attach($validated['categories']);
+
+        $localisation = new Localisation();
+        $localisation->event_id = $event->id;
+        $localisation->latitude = $request->input('latitude');
+        $localisation->longitude = $request->input('longitude');
+        $localisation->save();
 
         return redirect()->route('event.index');
     }

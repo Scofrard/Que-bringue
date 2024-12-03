@@ -24,6 +24,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/maps', function () {
+    return view('maps');
+})->name('maps');
+
 //User
 Route::controller(UserController::class)->name('user.')->group(function () {
     Route::get('/users', 'index')->name('index');

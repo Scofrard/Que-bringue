@@ -30,7 +30,7 @@
     <!-- AFFICHER TOUS LES EVENEMENTS -->
     <!-- AFFICHER TOUS LES EVENEMENTS -->
 
-    <!--<a href="{{ route('event.create') }}">Créer un nouvel événement</a>-->
+    <a href="{{ route('event.create') }}">Créer un nouvel événement</a>
     @foreach ($events as $event)
     <ul>
         <li>id : {{ $event->id }}</li>
@@ -40,14 +40,13 @@
         <li>{{ $category->name }}</li>
         @endforeach
     </ul>
-    <!--<a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
+    <a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
     <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
     <form action="{{ route('event.destroy' , $event->id) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Supprimer l'événement</button>
     </form>
-    -->
     @endforeach
 
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('latitude');
             $table->decimal('longitude');
+            $table->string('full_address');
             $table->foreignId('event_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
