@@ -48,6 +48,7 @@
                 <button type="submit">Modifier la réservation</button>
             </div>
         </form>
+        <a href="{{ route('reservation.index') }}">Retour à la liste des réservations</a>
     </div>
 </body>
 

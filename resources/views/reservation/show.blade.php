@@ -17,6 +17,7 @@
     <p><strong>Date de l'événement :</strong> {{ $reservation->event->date }}</p>
 
     <a href="{{ route('reservation.index') }}">Retour à la liste des réservations</a>
+    <a href="{{ route('reservation.edit', $reservation->id) }}">Modifier la réservation</a>
 </body>
 
 </html>

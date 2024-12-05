@@ -10,7 +10,8 @@ class Localisation extends Model
     protected $fillable = [
         'full_address',
         'latitude',
-        'longitude'
+        'longitude',
+        'event_id',
     ];
     public function event()
     {

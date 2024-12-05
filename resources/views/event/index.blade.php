@@ -39,7 +39,7 @@
         @foreach ($event->categories as $category)
         <li>{{ $category->name }}</li>
         @endforeach
-        <li>Adresse : {{ $event->localisation->full_address }}</li>
+        <li>Adresse : {{ $event->localisation->full_address ?? '-'}}</li>
     </ul>
     <a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
     <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
