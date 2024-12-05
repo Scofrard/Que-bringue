@@ -60,6 +60,9 @@ Route::controller(EventController::class)->name('event.')->group(function () {
     Route::post('/event/update/{id}', 'update')->name('update');
     Route::get('/event/{id}', 'show')->name('show');
     Route::post('/event/store', 'store')->name('store');
+    //Localisation
+    Route::get('/event/{id}/localisation/edit', [EventController::class, 'editLocalisation'])->name('localisation.edit');
+    Route::post('/event/{id}/localisation/update', [EventController::class, 'updateLocalisation'])->name('localisation.update');
 });
 
 Route::controller(SettingController::class)->name('setting.')->group(function () {
@@ -76,7 +79,7 @@ Route::controller(LocalisationController::class)->name('localisation.')->group(f
     Route::get('/localisation', 'index')->name('index');
     Route::get('/localisation', 'create')->name('create');
     Route::get('/localisation', 'destroy')->name('destroy');
-    Route::get('/localisation', 'update')->name('update');
+    Route::post('/localisation', 'update')->name('update');
     Route::get('/localisation', 'edit')->name('edit');
     Route::get('/localisation', 'show')->name('show');
     Route::post('/localisation/store', 'store')->name('store');

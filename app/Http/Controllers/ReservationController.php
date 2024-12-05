@@ -83,6 +83,8 @@ class ReservationController extends Controller
 
         $reservation = Reservation::findOrFail($id);
 
+        $reservation->seats = $reservation->seats !== $request->seats ? $request->seats : $reservation->seats;
+
         $reservation->update($validated);
 
         return redirect()->route('reservation.index');

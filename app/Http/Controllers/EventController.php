@@ -111,4 +111,33 @@ class EventController extends Controller
         $event->delete();
         return redirect()->route('event.index');
     }
+
+    public function editLocalisation($id)
+    {
+        $event = Event::with('localisation')->findOrFail($id);
+
+        return view('event.edit-localisation', compact('event'));
+    }
+
+    public function updateLocalisation(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'address-input' => 'required|string|max:255',
+            'address-latitude' => 'required|numeric',
+            'address-longitude' => 'required|numeric',
+        ]);
+
+        $event = Event::findOrFail($id);
+
+        $event->localisation()->updateOrCreate(
+            ['event_id' => $event->id],
+            [
+                'full_address' => $validated['address-input'],
+                'latitude' => $validated['address-latitude'],
+                'longitude' => $validated['address-longitude'],
+            ]
+        );
+
+        return redirect()->route('event.index');
+    }
 }
