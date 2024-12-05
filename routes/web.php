@@ -39,16 +39,17 @@ Route::controller(UserController::class)->name('user.')->group(function () {
     Route::post('/user/store', 'store')->name('store');
 });
 
-//Reservation
+// Reservation Routes
 Route::controller(ReservationController::class)->name('reservation.')->group(function () {
-    Route::get('/reservation', 'index')->name('index')->name('welcome');
-    Route::get('/reservation', 'create')->name('create');
-    Route::get('/reservation', 'destroy')->name('destroy');
-    Route::get('/reservation', 'update')->name('update');
-    Route::get('/reservation', 'edit')->name('edit');
-    Route::get('/reservation', 'show')->name('show');
+    Route::get('/reservations', 'index')->name('index');
+    Route::get('/reservation/create', 'create')->name('create');
+    Route::get('/reservation/{id}', 'show')->name('show');
+    Route::get('/reservation/{id}/edit', 'edit')->name('edit');
     Route::post('/reservation/store', 'store')->name('store');
+    Route::post('/reservation/{id}/update', 'update')->name('update');
+    Route::delete('/reservation/{id}', 'destroy')->name('destroy');
 });
+
 
 Route::controller(EventController::class)->name('event.')->group(function () {
     Route::get('/', 'index')->name('home');

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+use App\Models\User;
+use App\Models\Event;
 
 class ReservationController extends Controller
 {
@@ -11,8 +14,23 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::with(['user', 'event'])->get();
+        $users = User::all();
+        $events = Event::all();
+
+        return view('reservation.index', compact('reservations', 'users', 'events'));
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $reservation = Reservation::with(['user', 'event'])->findOrFail($id);
+
+        return view('reservation.show', compact('reservation'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,13 +48,7 @@ class ReservationController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
