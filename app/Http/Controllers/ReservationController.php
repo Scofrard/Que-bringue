@@ -75,7 +75,17 @@ class ReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'event_id' => 'required|exists:events,id',
+            'seats' => 'required|integer|min:1',
+        ]);
+
+        $reservation = Reservation::findOrFail($id);
+
+        $reservation->update($validated);
+
+        return redirect()->route('reservation.index');
     }
 
     /**
@@ -83,6 +93,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+        return redirect()->route('reservation.index');
     }
 }
