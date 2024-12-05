@@ -44,9 +44,9 @@ Route::controller(ReservationController::class)->name('reservation.')->group(fun
     Route::get('/reservations', 'index')->name('index');
     Route::get('/reservation/create', 'create')->name('create');
     Route::get('/reservation/{id}', 'show')->name('show');
-    Route::get('/reservation/{id}/edit', 'edit')->name('edit');
+    Route::get('/reservation//edit/{id}', 'edit')->name('edit');
     Route::post('/reservation/store', 'store')->name('store');
-    Route::post('/reservation/{id}/update', 'update')->name('update');
+    Route::post('/reservation//update/{id}', 'update')->name('update');
     Route::delete('/reservation/{id}', 'destroy')->name('destroy');
 });
 

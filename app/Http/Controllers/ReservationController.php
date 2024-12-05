@@ -37,7 +37,10 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        $events = Event::all();
+        $users = User::all();
+
+        return view('reservation.create', compact('events', 'users'));
     }
 
     /**
@@ -45,17 +48,26 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'event_id' => 'required|exists:events,id',
+            'seats' => 'required',
+        ]);
+
+        Reservation::create($validated);
+
+        return redirect()->route('reservation.index');
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        $events = Event::all();
+        $users = User::all();
+        return view('reservation.edit', compact('reservation', 'events', 'users'));
     }
 
     /**
