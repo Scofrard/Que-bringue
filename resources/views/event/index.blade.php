@@ -33,6 +33,11 @@
     <a href="{{ route('event.create') }}">Créer un nouvel événement</a>
     @foreach ($events as $event)
     <ul>
+        @foreach ($event->images as $image)
+        <li>
+            <img src="{{ asset('storage/./' . $image->path) }}" style="width: 150px; height: auto;">
+        </li>
+        @endforeach
         <li>id : {{ $event->id }}</li>
         <li>Nom : {{ $event->name }}</li>
         <li>Date : {{ $event->date }}</li>

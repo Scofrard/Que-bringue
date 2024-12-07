@@ -12,13 +12,14 @@
 </head>
 
 <body>
-    <form action="{{ route('event.store') }}" method="POST">
+    <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <input type="text" id="name" name="name" placeholder="Nom" required>
         <input type="text" id="description" name="description" placeholder="Description" required>
         <input type="text" id="seats" name="seats" placeholder="Sièges" required>
         <input type="text" id="date" name="date" placeholder="Date" required>
+        <input type="file" id="attachment" name="attachment">
         <select name="categories[]" multiple>
             @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>

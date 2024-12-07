@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
 use App\Models\Localisation;
+use App\Models\Image;
+//use Illuminate\Container\Attributes\Storage;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class EventController extends Controller
 {
@@ -57,11 +62,13 @@ class EventController extends Controller
             'address-input' => 'required',
             'address-latitude' => 'required',
             'address-longitude' => 'required',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
             'categories' => 'required|array',
             'categories.*' => 'integer|exists:categories,id',
         ]);
 
         $event = Event::create($validated);
+
         $event->categories()->attach($validated['categories']);
 
         $localisation = new Localisation();
@@ -70,6 +77,17 @@ class EventController extends Controller
         $localisation->latitude = $request->input('address-latitude');
         $localisation->longitude = $request->input('address-longitude');
         $localisation->save();
+
+        $file = $request->file('attachment');
+
+        $nameImage = Storage::disk('public')->put('events', $file);
+
+        $image = Image::create([
+            'event_id' => $event->id,
+            'path' => $nameImage
+        ]);
+
+        //dd($event->images->first()->path);
 
         return redirect()->route('event.index');
     }
