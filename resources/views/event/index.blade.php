@@ -33,14 +33,15 @@
     <a href="{{ route('event.create') }}">Créer un nouvel événement</a>
     @foreach ($events as $event)
     <ul>
-        @foreach ($event->images as $image)
         <li>
-            <img src="{{ asset('storage/./' . $image->path) }}" style="width: 150px; height: auto;">
+            <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" style="width: 150px; height: auto;">
         </li>
-        @endforeach
         <li>id : {{ $event->id }}</li>
         <li>Nom : {{ $event->name }}</li>
-        <li>Date : {{ $event->date }}</li>
+        <li>Description : {{ $event->description }}</li>
+        <li>Date de l'événement : {{ \Carbon\Carbon::parse($event->date)->translatedFormat('l j F Y') }}</li>
+        <li>Heure de l'événement : {{ str_replace(':', 'h', \Carbon\Carbon::parse($event->date)->format('H:i')) }}</li>
+        <li>Places disponibles : {{ $event->seats }}</li>
         @foreach ($event->categories as $category)
         <li>{{ $category->name }}</li>
         @endforeach

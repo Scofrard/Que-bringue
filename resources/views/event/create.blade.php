@@ -15,22 +15,44 @@
     <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
-        <input type="text" id="name" name="name" placeholder="Nom" required>
-        <input type="text" id="description" name="description" placeholder="Description" required>
-        <input type="text" id="seats" name="seats" placeholder="Sièges" required>
-        <input type="text" id="date" name="date" placeholder="Date" required>
-        <input type="file" id="attachment" name="attachment">
-        <select name="categories[]" multiple>
-            @foreach ($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="name">Nom de l'événement</label>
+            <input type="text" id="name" name="name" placeholder="Nom" required>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="textarea" id="description" name="description" placeholder="Description" required>
+        </div>
+        <div>
+            <label for="seats">Places disponibles</label>
+            <input type="text" id="seats" name="seats" placeholder="Sièges" required>
+        </div>
+        <div>
+            <label for="date">Date de l'événement</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="time">Heure de l'événement</label>
+            <input type="time" id="time" name="time" required>
+        </div>
+        <div>
+            <label for="attachment">Photo de l'événement</label>
+            <input type="file" id="attachment" name="attachment[]" multiple>
+        </div>
+        <div>
+            <label for="categories">Catégorie(s)</label>
+            <select name="categories[]" multiple>
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <div class="mb-3">
             <label for="address-input" class="form-label">Search Address , City or Country</label>
             <input type="text" class="form-control map-input" id="address-input" name="address-input">
         </div>
         <hr>
-        <div id="address-map-container" style="width: 100%; height:400px;"> </div>
+        <div id="address-map-container" style="width: 0px; height:0px;"> </div>
         <div style="width: 100%; height: 100%" id="address-map"> </div>
         <div class="mb-3">
             <label for="address-latitude" class="form-label">Latitude</label>

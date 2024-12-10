@@ -26,7 +26,6 @@ class EventController extends Controller
         $eventsCategoryEnCouple = Event::whereHas('categories', function ($query) {
             $query->where('categories.name', 'En couple');
         })->get();
-        //dd($eventsCategoryEnCouple);
 
         return view('event.index', compact('events', 'eventsCategoryEnCouple'));
     }
@@ -54,20 +53,25 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
             'seats' => 'required',
-            'date' => 'required',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
             'address-input' => 'required',
             'address-latitude' => 'required',
             'address-longitude' => 'required',
-            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'attachment' => 'required|array|mimes:jpg,jpeg,png,pdf|max:2048',
             'categories' => 'required|array',
             'categories.*' => 'integer|exists:categories,id',
         ]);
 
-        $event = Event::create($validated);
+        //Combiner la date et l'heure dans le champs Date de la table events
+        $datetime = $request->date . ' ' . $request->time;
+
+        $event = Event::create(array_merge($validated, ['date' => $datetime]));
 
         $event->categories()->attach($validated['categories']);
 
@@ -78,16 +82,15 @@ class EventController extends Controller
         $localisation->longitude = $request->input('address-longitude');
         $localisation->save();
 
-        $file = $request->file('attachment');
+        foreach ($request->file('attachment') as $file) {
 
-        $nameImage = Storage::disk('public')->put('events', $file);
+            $nameImage = Storage::disk('public')->put('events', $file);
 
-        $image = Image::create([
-            'event_id' => $event->id,
-            'path' => $nameImage
-        ]);
-
-        //dd($event->images->first()->path);
+            $image = Image::create([
+                'event_id' => $event->id,
+                'path' => $nameImage
+            ]);
+        }
 
         return redirect()->route('event.index');
     }
@@ -113,9 +116,13 @@ class EventController extends Controller
         $event->name = $event->name !== $request->name ? $request->name : $event->name;
         $event->description = $event->description !== $request->description ? $request->description : $event->description;
         $event->seats = $event->seats !== $request->seats ? $request->seats : $event->seats;
-        $event->date = $event->date !== $request->date ? $request->date : $event->date;
+
+        $datetime = $request->date . ' ' . $request->time;
+        $event->date = $event->date !== $datetime ? $datetime : $event->date;
 
         $event->save();
+
+        $event->categories()->sync($request->categories);
 
         return redirect()->route('event.index');
     }
