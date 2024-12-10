@@ -52,7 +52,7 @@
             <input type="text" class="form-control map-input" id="address-input" name="address-input">
         </div>
         <hr>
-        <div id="address-map-container" style="width: 0px; height:0px;"> </div>
+        <div id="address-map-container" style="width: 100%; height:400px;"> </div>
         <div style="width: 100%; height: 100%" id="address-map"> </div>
         <div class="mb-3">
             <label for="address-latitude" class="form-label">Latitude</label>

@@ -29,7 +29,7 @@ function initialize() {
             position: { lat: latitude, lng: longitude },
         });
 
-        marker.setVisible(isEdit);
+        marker.setVisible(true);
 
         const autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.key = fieldKey;

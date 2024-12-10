@@ -47,6 +47,7 @@
         @endforeach
         <li>Adresse : {{ $event->localisation->full_address ?? '-'}}</li>
     </ul>
+    <a href="{{ route('reservation.create', $event->id) }} ">Réserver</a>
     <a href="{{ route('event.localisation.edit', $event->id) }}">Modifier la localisation</a>
     <a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
     <a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
@@ -70,7 +71,7 @@
     <ul>
         <li>Nom : {{ $event->name }}</li>
         <li>Date : {{ $event->date }}</li>
-        <a href="{{ route('event.show', $event->id) }} ">Réserver</a>
+        <a href="{{ route('reservation.create', $event->id) }} ">Réserver</a>
     </ul>
     @endforeach
     @endif
