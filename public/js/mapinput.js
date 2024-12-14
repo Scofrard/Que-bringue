@@ -45,12 +45,13 @@ function initialize() {
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             marker.setVisible(false);
             const place = autocomplete.getPlace();
+            //console.log(place);
 
             geocoder.geocode({ 'placeId': place.place_id }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
                     const lat = results[0].geometry.location.lat();
                     const lng = results[0].geometry.location.lng();
-                    setLocationCoordinates(autocomplete.key, lat, lng);
+                    setLocationCoordinates(autocomplete.key, lat, lng, place);
                 }
             });
 
@@ -73,10 +74,10 @@ function initialize() {
     }
 }
 
-function setLocationCoordinates(key, lat, lng) {
+function setLocationCoordinates(key, lat, lng, place) {
     const latitudeField = document.getElementById(key + "-" + "latitude");
     const longitudeField = document.getElementById(key + "-" + "longitude");
     latitudeField.value = lat;
     longitudeField.value = lng;
-    Livewire.emit('updateCoordinates', lat, lng);
+    Livewire.dispatch('updateCoordinates', { address: place.formatted_address, latitude: lat, longitude: lng });
 }

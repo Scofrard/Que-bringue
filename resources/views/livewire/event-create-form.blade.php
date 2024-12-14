@@ -38,18 +38,18 @@
         </div>
         <div class="mb-3">
             <label for="address-input" class="form-label">Search Address , City or Country</label>
-            <input type="text" class="form-control map-input" id="address-input" wire:model="addressInput">
+            <input type="text" class="form-control map-input" id="address-input" wire:model.defer="addressInput">
         </div>
         <hr>
         <div id="address-map-container" style="width: 100%; height:400px;"> </div>
         <div style="width: 100%; height: 100%" id="address-map"></div>
         <div class="mb-3">
             <label for="address-latitude" class="form-label">Latitude</label>
-            <input type="text" class="form-control" id="address-latitude" wire:model="addressLatitude">
+            <input type="text" class="form-control" id="address-latitude" wire:model.defer="addressLatitude">
         </div>
         <div class="mb-3">
             <label for="address-longitude" class="form-label">Longitude</label>
-            <input type="text" class="form-control" id="address-longitude" wire:model="addressLongitude">
+            <input type="text" class="form-control" id="address-longitude" wire:model.defer="addressLongitude">
         </div>
         <button type="submit" class="btn btn-primary">Créer</button>
     </form>

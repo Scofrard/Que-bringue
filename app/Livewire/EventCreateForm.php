@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 use App\Models\Event;
 use App\Models\Category;
 use App\Models\Localisation;
@@ -26,17 +27,16 @@ class EventCreateForm extends Component
     public $category_ids = [];
     protected $listeners = ['updateCoordinates'];
 
-    public function updateCoordinates($latitude, $longitude)
+    #[On('updateCoordinates')]
+    public function updateCoordinates($latitude, $longitude, $address)
     {
         $this->addressLatitude = $latitude;
         $this->addressLongitude = $longitude;
+        $this->addressInput = $address;
     }
-
 
     public function submit()
     {
-
-        dd($this);
         // Valider les données du formulaire
         $validatedData = $this->validate([
             'name' => 'required',
