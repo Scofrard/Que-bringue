@@ -24,16 +24,26 @@ class EventCreateForm extends Component
     public $addressLongitude;
     public $attachment = [];
     public $category_ids = [];
+    protected $listeners = ['updateCoordinates'];
+
+    public function updateCoordinates($latitude, $longitude)
+    {
+        $this->addressLatitude = $latitude;
+        $this->addressLongitude = $longitude;
+    }
+
 
     public function submit()
     {
+
+        dd($this);
         // Valider les données du formulaire
         $validatedData = $this->validate([
             'name' => 'required',
             'description' => 'required',
-            'seats' => 'required|integer',
-            'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
+            'seats' => 'required',
+            'date' => 'required',
+            'time' => 'required',
             'addressInput' => 'required',
             'addressLatitude' => 'required',
             'addressLongitude' => 'required',
@@ -53,6 +63,8 @@ class EventCreateForm extends Component
             'seats' => $validatedData['seats'],
             'date' => $validatedData['date'],
         ]);
+
+
 
         // Associer les catégories
         $event->categories()->attach($validatedData['category_ids']);
@@ -80,6 +92,7 @@ class EventCreateForm extends Component
         // Afficher un message de succès
         session()->flash('success', 'Evénement créé avec succès !');
     }
+
 
     public function render()
     {

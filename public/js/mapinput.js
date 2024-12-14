@@ -78,4 +78,5 @@ function setLocationCoordinates(key, lat, lng) {
     const longitudeField = document.getElementById(key + "-" + "longitude");
     latitudeField.value = lat;
     longitudeField.value = lng;
+    Livewire.emit('updateCoordinates', lat, lng);
 }

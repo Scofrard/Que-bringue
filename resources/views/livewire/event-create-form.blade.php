@@ -1,4 +1,4 @@
-<div>
+<div id="event-create-form">
     <h1>Créer un nouvel événement</h1>
     @if (session()->has('success'))
     <div style="color: green;">{{ session('success') }}</div>
@@ -61,7 +61,7 @@
 
 @push('scripts')
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEBQqSJKJORH9pB2cr1TWAxOnqUYX8hQ&libraries=places&callback=initialize" async defer> </script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.api.key') }}&libraries=places&callback=initialize" async defer> </script>
 <script type="text/javascript" src="/js/mapinput.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
