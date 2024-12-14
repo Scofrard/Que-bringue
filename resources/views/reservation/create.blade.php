@@ -17,7 +17,6 @@
             <label for="event_id">Événement :</label>
             <select name="event_id" id="event_id" required>
                 <option value="{{ $event->name }}">{{ $event->name }}</option>
-
             </select>
         </div>
 
