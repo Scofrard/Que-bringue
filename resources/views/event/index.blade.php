@@ -110,7 +110,7 @@
             <div class="card backgroundyellow">
                 <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
                 <div class="contentcard">
-                    <h3>Les bringues {{ $event->name }}</h3>
+                    <h3>{{ $event->name }}</h3>
                     <div class="iconevent">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
                             style="fill: rgba(13, 13, 13, 1);">

@@ -37,6 +37,8 @@ class EventCreateForm extends Component
             'addressInput' => 'required',
             'addressLatitude' => 'required',
             'addressLongitude' => 'required',
+            'attachment' => 'nullable|array',
+            'attachment.*' => 'file|mimes:jpeg,png,jpg,gif|max:2048',
             'category_ids' => 'required|array',
             'category_ids.*' => 'integer|exists:categories,id',
         ]);
