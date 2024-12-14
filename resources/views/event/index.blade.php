@@ -6,11 +6,13 @@
 
 <!-- AFFICHER TOUS LES EVENEMENTS -->
 
-<a href="{{ route('event.create') }}">Créer un nouvel événement</a>
+<a href="{{ route('event.create') }}" wire:navigate>Créer un nouvel événement</a>
 @foreach ($events as $event)
 <ul>
     <li>
-        <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" style="width: 150px; height: auto;">
+        @if (!$event->images->isEmpty())
+        <img src="{{ asset('storage/./' . $event->images[0]->path) }}" style="width: 150px; height: auto;">
+        @endif
     </li>
     <li>id : {{ $event->id }}</li>
     <li>Nom : {{ $event->name }}</li>
@@ -167,7 +169,9 @@
         @foreach ($eventsCategoryTwo as $event)
         <a href="{{ route('event.show', $event->id) }}" wire:navigate>
             <div class="card backgroundpink">
-                <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
+                @if (!$event->images->isEmpty())
+                <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event à nié louper">
+                @endif
                 <div class="contentcard">
                     <h3>{{ $event->name }}</h3>
                     <div class="iconevent">
