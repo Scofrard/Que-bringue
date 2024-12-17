@@ -38,12 +38,12 @@ cp .env.example .env
 
 ### 5. Configurer la base de données dasn votre fichier .env 
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=quebringue
-DB_USERNAME=root
-DB_PASSWORD=
+DB_CONNECTION=mysql  
+DB_HOST=127.0.0.1  
+DB_PORT=3306  
+DB_DATABASE=quebringue  
+DB_USERNAME=root  
+DB_PASSWORD=  
 
 ### 6. Ajoutez votre clé API Google Maps dans le fichier .env
 
