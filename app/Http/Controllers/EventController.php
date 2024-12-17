@@ -23,6 +23,10 @@ class EventController extends Controller
         $categories = Category::all();
         $localisations = Localisation::all();
 
+        $eventBanger = Event::whereHas('categories', function ($query) {
+            $query->where('categories.name', 'Banger');
+        })->first();
+
         $eventsCategoryOne = Event::whereHas('categories', function ($query) {
             $query->where('categories.id', '1');
         })->get();
@@ -43,7 +47,9 @@ class EventController extends Controller
             $query->where('categories.id', '5');
         })->get();
 
-        return view('event.index', compact('events', 'eventsCategoryOne', 'eventsCategoryTwo', 'eventsCategoryThree', 'eventsCategoryFour', 'eventsCategoryFive'));
+
+
+        return view('event.index', compact('events', 'eventBanger', 'eventsCategoryOne', 'eventsCategoryTwo', 'eventsCategoryThree', 'eventsCategoryFour', 'eventsCategoryFive'));
     }
 
     /**

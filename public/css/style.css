@@ -61,7 +61,7 @@ a {
     font-weight: 400;
     font-style: normal;
     text-decoration: none;
-    color: var(--blue);
+    color: var(--white);
 }
 
 p {
@@ -197,9 +197,6 @@ p {
 }
 
 /* --- CONTAINER --- */
-/* --- CONTAINER --- */
-/* --- CONTAINER --- */
-
 .container {
     width: 100vw;
     max-width: 100%;
@@ -349,11 +346,16 @@ header {
 /* --- MAIN EVENT --- */
 
 .main-event {
-    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.container.main-event {
+    padding-bottom: 10rem;
 }
 
 .main-event-content img {
-    max-width: 100vw;
+    max-height: 540px;
     width: 100%;
     object-fit: cover;
 }
