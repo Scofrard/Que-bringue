@@ -31,7 +31,19 @@ class EventController extends Controller
             $query->where('categories.id', '2');
         })->get();
 
-        return view('event.index', compact('events', 'eventsCategoryOne', 'eventsCategoryTwo'));
+        $eventsCategoryThree = Event::whereHas('categories', function ($query) {
+            $query->where('categories.id', '3');
+        })->get();
+
+        $eventsCategoryFour = Event::whereHas('categories', function ($query) {
+            $query->where('categories.id', '4');
+        })->get();
+
+        $eventsCategoryFive = Event::whereHas('categories', function ($query) {
+            $query->where('categories.id', '5');
+        })->get();
+
+        return view('event.index', compact('events', 'eventsCategoryOne', 'eventsCategoryTwo', 'eventsCategoryThree', 'eventsCategoryFour', 'eventsCategoryFive'));
     }
 
     /**

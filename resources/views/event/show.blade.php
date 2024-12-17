@@ -3,7 +3,7 @@
 @section('title', 'Bringue')
 
 @section('content')
-<a href="{{ route('event.index') }}">Revenir aux événements</a>
+<a href="{{ route('event.index') }}" wire:navigate>Revenir aux événements</a>
 <ul>
     <li>
         <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" style="width: 150px; height: auto;">
@@ -23,5 +23,6 @@
         @endforeach
     </li>
 </ul>
-<a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
+<a href="{{ route('reservation.create', $event->id) }} " wire:navigate>Réserver vos places</a>
+<a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a>
 @endsection

@@ -77,7 +77,7 @@
     </div>
 </div>
 
-<!--- NIE LOUPER --->
+<!--- A NIE LOUPER --->
 
 <div class="category louper">
     <div class="bringues">
@@ -164,7 +164,7 @@
     </div>
     <div class="cards">
         @if ($eventsCategoryTwo->isEmpty())
-        <p class="noevent">Aucune bringues pour votre couple</p>
+        <p class="noevent-white">Aucune bringues pour votre couple</p>
         @else
         @foreach ($eventsCategoryTwo as $event)
         <a href="{{ route('event.show', $event->id) }}" wire:navigate>
@@ -172,6 +172,189 @@
                 @if (!$event->images->isEmpty())
                 <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event à nié louper">
                 @endif
+                <div class="contentcard">
+                    <h3>{{ $event->name }}</h3>
+                    <div class="iconevent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+                            style="fill: rgba(13, 13, 13, 1);">
+                            <path
+                                d="M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7v2H5a2 2 0 0 0-2 2zm16 14H5V8h14z">
+                            </path>
+                        </svg>
+                        <p>{{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($event->date)->format('H:i')) }}</p>
+                    </div>
+                    <div class="iconevent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+                            style="fill: rgba(13, 13, 13, 1);">
+                            <path
+                                d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z">
+                            </path>
+                        </svg>
+                        <p>{{ $event->localisation->full_address ?? '-'}}</p>
+                    </div>
+                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                </div>
+            </div>
+        </a>
+        @endforeach
+        @endif
+    </div>
+</div>
+
+<!-- ENTRE POTES -->
+
+<div class="category potes">
+    <div class="bringues">
+        <div class="bringuetitle">
+            <h2>Entre potes</h2>
+        </div>
+        <div class="arrow">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
+                    style="fill: rgba(13, 13, 13, 1);">
+                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
+                </svg>
+                <span class="linkvisible">Précédent</span>
+            </a>
+            <a href="suivant" class="next" data-tooltip-text="Suivant">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
+                    style="fill: rgba(13, 13, 13, 1);">
+                    <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
+                </svg>
+                <span class="linkvisible">Suivant</span>
+            </a>
+        </div>
+    </div>
+    <div class="cards">
+        @if ($eventsCategoryThree->isEmpty())
+        <p class="noevent-white">Aucune bringue à faire entre poto</p>
+        @else
+        @foreach ($eventsCategoryThree as $event)
+        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+            <div class="card backgroundblack">
+                <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
+                <div class="contentcard">
+                    <h3>{{ $event->name }}</h3>
+                    <div class="iconevent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+                            style="fill: rgba(13, 13, 13, 1);">
+                            <path
+                                d="M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7v2H5a2 2 0 0 0-2 2zm16 14H5V8h14z">
+                            </path>
+                        </svg>
+                        <p>{{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($event->date)->format('H:i')) }}</p>
+                    </div>
+                    <div class="iconevent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+                            style="fill: rgba(13, 13, 13, 1);">
+                            <path
+                                d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z">
+                            </path>
+                        </svg>
+                        <p>{{ $event->localisation->full_address ?? '-'}}</p>
+                    </div>
+                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                </div>
+            </div>
+        </a>
+        @endforeach
+        @endif
+    </div>
+</div>
+
+<!-- EN FAMILLE -->
+
+<div class="category famille">
+    <div class="bringues">
+        <div class="bringuetitle">
+            <h2>En famille</h2>
+        </div>
+        <div class="arrow">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
+                    style="fill: rgba(13, 13, 13, 1);">
+                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
+                </svg>
+                <span class="linkvisible">Précédent</span>
+            </a>
+            <a href="suivant" class="next" data-tooltip-text="Suivant">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
+                    style="fill: rgba(13, 13, 13, 1);">
+                    <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
+                </svg>
+                <span class="linkvisible">Suivant</span>
+            </a>
+        </div>
+    </div>
+    <div class="cards">
+        @if ($eventsCategoryFour->isEmpty())
+        <p class="noevent-white">Aucune bringue à faire en famille</p>
+        @else
+        @foreach ($eventsCategoryFour as $event)
+        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+            <div class="card backgroundblue">
+                <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
+                <div class="contentcard">
+                    <h3>{{ $event->name }}</h3>
+                    <div class="iconevent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+                            style="fill: rgba(13, 13, 13, 1);">
+                            <path
+                                d="M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7v2H5a2 2 0 0 0-2 2zm16 14H5V8h14z">
+                            </path>
+                        </svg>
+                        <p>{{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($event->date)->format('H:i')) }}</p>
+                    </div>
+                    <div class="iconevent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+                            style="fill: rgba(13, 13, 13, 1);">
+                            <path
+                                d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z">
+                            </path>
+                        </svg>
+                        <p>{{ $event->localisation->full_address ?? '-'}}</p>
+                    </div>
+                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                </div>
+            </div>
+        </a>
+        @endforeach
+        @endif
+    </div>
+</div>
+
+<!--- AVEC LES TCHIOS --->
+
+<div class="category tchios">
+    <div class="bringues">
+        <div class="bringuetitle">
+            <h2>Pour les tchios</h2>
+        </div>
+        <div class="arrow">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
+                    style="fill: rgba(13, 13, 13, 1);">
+                    <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
+                </svg>
+                <span class="linkvisible">Précédent</span>
+            </a>
+            <a href="suivant" class="next" data-tooltip-text="Suivant">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
+                    style="fill: rgba(13, 13, 13, 1);">
+                    <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
+                </svg>
+                <span class="linkvisible">Suivant</span>
+            </a>
+        </div>
+    </div>
+    <div class="cards">
+        @if ($eventsCategoryFive->isEmpty())
+        <p class="noevent">Aucune bringue pour vos mômes</p>
+        @else
+        @foreach ($eventsCategoryFive as $event)
+        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+            <div class="card backgroundyellow">
+                <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
                 <div class="contentcard">
                     <h3>{{ $event->name }}</h3>
                     <div class="iconevent">
