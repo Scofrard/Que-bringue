@@ -610,3 +610,7 @@
 </iframe>
 
 @endsection
+
+@push('scripts')
+<script type="text/javascript" src="/js/slideevent.js"></script>
+@endpush
