@@ -9,7 +9,8 @@
     @stack('styles')
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=sora:400,500,600&display=swap?v=2" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/vmj5cbu.css">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
