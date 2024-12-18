@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="container">
-    <h1>Test build</h1>
     <a href="{{ route('event.index') }}" wire:navigate>Revenir aux événements</a>
     <div class="container main-event">
         <div class="main-event-content">
