@@ -35,13 +35,19 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($event_id)
+    public function create(Request $request)
     {
-        $event = Event::findOrFail($event_id);
+        $events = Event::all();
         $users = User::all();
 
-        return view('reservation.create', compact('event', 'users'));
+        // Récupérer l'événement sélectionné via la méthode request ou GET
+        $selectedEvent = $request->query('event_id')
+            ? Event::find($request->query('event_id'))
+            : null;
+
+        return view('reservation.create', compact('events', 'users', 'selectedEvent'));
     }
+
 
     /**
      * Store a newly created resource in storage.

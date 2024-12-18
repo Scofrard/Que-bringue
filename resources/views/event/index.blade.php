@@ -25,10 +25,10 @@
     @endforeach
     <li>Adresse : {{ $event->localisation->full_address ?? '-'}}</li>
 </ul>
-<a href="{{ route('reservation.create', $event->id) }} ">Réserver</a>
-<a href="{{ route('event.localisation.edit', $event->id) }}">Modifier la localisation</a>
-<a href="{{ route('event.show', $event->id) }} ">Plus d'infos sur l'événement</a>
-<a href="{{ route('event.edit', $event->id) }} ">Modifier l'événement</a>
+<a href="{{ route('reservation.create', ['event_id' => $event->id]) }} " wire:navigate>Réserver</a>
+<a href="{{ route('event.localisation.edit', $event->id) }}" wire:navigate>Modifier la localisation</a>
+<a href="{{ route('event.show', $event->id) }} " wire:navigate>Plus d'infos sur l'événement</a>
+<a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a>
 <form action="{{ route('event.destroy' , $event->id) }}" method="POST">
     @csrf
     @method('DELETE')
@@ -75,7 +75,7 @@
                 </svg>
                 <p>{{ $event->localisation->full_address ?? '-'}}</p>
             </div>
-            <a href="{{ route('reservation.create', $event->id) }}" class="btn-secondary" wire:navigate>Réserver</a>
+            <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
         </div>
     </div>
 </a>
@@ -133,7 +133,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -196,7 +196,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -257,7 +257,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -318,7 +318,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -379,7 +379,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', $event->id) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>

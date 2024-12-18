@@ -3,6 +3,10 @@
 @section('title', 'Liste de toutes les réservations')
 
 @section('content')
+
+
+<a href="{{ route('reservation.create') }} ">Créer une réservation</a>
+
 <h1>Liste de toutes les réservations</h1>
 <table>
     <thead>

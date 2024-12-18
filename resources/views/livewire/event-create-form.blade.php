@@ -1,8 +1,5 @@
 <div id="event-create-form">
     <h1>Créer un nouvel événement</h1>
-    @if (session()->has('success'))
-    <div style="color: green;">{{ session('success') }}</div>
-    @endif
     <form wire:submit.prevent="submit" enctype="multipart/form-data">
         <div>
             <label for="name">Nom de l'événement</label>
@@ -53,10 +50,13 @@
         </div>
         <button type="submit" class="btn btn-primary">Créer</button>
     </form>
+    @if (session()->has('success'))
+    <div style="color: #FF56C2;">{{ session('success') }}</div>
+    @endif
 </div>
 
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
 @endpush
 
 @push('scripts')
