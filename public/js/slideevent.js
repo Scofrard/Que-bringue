@@ -1,16 +1,21 @@
-document.querySelector('.next').addEventListener('click', function (e) {
-    e.preventDefault();
-    const container = document.querySelector('.cards');
-    const scrollAmount = container.querySelector('.card').offsetWidth + 50;
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+document.querySelectorAll('.next').forEach((nextButton) => {
+    nextButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        const container = nextButton.closest('.category').querySelector('.cards');
+        const scrollAmount = container.querySelector('.card').offsetWidth + 50;
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
 });
 
-document.querySelector('.prev').addEventListener('click', function (e) {
-    e.preventDefault();
-    const container = document.querySelector('.cards');
-    const scrollAmount = container.querySelector('.card').offsetWidth + 50;
-    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+document.querySelectorAll('.prev').forEach((prevButton) => {
+    prevButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        const container = prevButton.closest('.category').querySelector('.cards');
+        const scrollAmount = container.querySelector('.card').offsetWidth + 50;
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const cards = document.querySelectorAll('.cardcomment');
