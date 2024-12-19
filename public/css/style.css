@@ -668,10 +668,10 @@ a[data-tooltip-text]:hover::after {
 }
 
 .backgroundblue:nth-child(3n) {
-    background-color: var(--black);
+    background-color: var(--pink);
     box-shadow:
         12px 12px 0 var(--blue),
-        12px 12px 0 8px var(--black);
+        12px 12px 0 8px var(--pink);
 }
 
 /* --- AVEC LES TCHIOS --- */
