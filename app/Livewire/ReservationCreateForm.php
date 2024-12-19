@@ -25,7 +25,6 @@ class ReservationCreateForm extends Component
         }
     }
 
-
     public function submit()
     {
         $validatedData = $this->validate([
