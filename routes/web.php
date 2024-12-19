@@ -42,14 +42,13 @@ Route::controller(UserController::class)->name('user.')->group(function () {
 // Reservation Routes
 Route::controller(ReservationController::class)->name('reservation.')->group(function () {
     Route::get('/reservations', 'index')->name('index');
-    Route::get('/reservation/create', 'create')->name('create');
+    Route::get('/reservation/create/{event_id?}', 'create')->name('create');
     Route::get('/reservation/{id}', 'show')->name('show');
     Route::get('/reservation//edit/{id}', 'edit')->name('edit');
     Route::post('/reservation/store', 'store')->name('store');
     Route::post('/reservation//update/{id}', 'update')->name('update');
     Route::delete('/reservation/{id}', 'destroy')->name('destroy');
 });
-
 
 Route::controller(EventController::class)->name('event.')->group(function () {
     Route::get('/', 'index')->name('home');

@@ -390,7 +390,7 @@
 
 <!-- AVIS CLIENTS -->
 
-<div class="container">
+<div>
     <h4 class="titlenotice">Ce qu'en pensent les bringueurs</h4>
     <div class="noticeglobal">
         <div class="allstars">
