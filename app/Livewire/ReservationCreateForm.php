@@ -18,7 +18,7 @@ class ReservationCreateForm extends Component
         $this->seats++;
     }
 
-    public function decrementSeats()
+    public function decrement()
     {
         if ($this->seats > 1) {
             $this->seats--;
