@@ -154,10 +154,9 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        $event = Event::findOrFail($id);
-        $categories = Category::all();
-        return view('event.edit', compact('event', 'categories'));
+        return view('event.edit', compact('id'));
     }
+
 
     /**
      * Update the specified resource in storage.

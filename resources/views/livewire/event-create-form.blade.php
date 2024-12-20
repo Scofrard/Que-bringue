@@ -1,6 +1,8 @@
 <div id="event-create-form">
     <h1>Créer un nouvel événement</h1>
     <form wire:submit.prevent="submit" enctype="multipart/form-data">
+        @csrf
+        @method('POST')
         <div>
             <label for="name">Nom de l'événement</label>
             <input type="text" id="name" wire:model="name" placeholder="Nom" required>

@@ -351,12 +351,12 @@ header {
 }
 
 .container.main-event {
-    padding-bottom: 10rem;
+    padding-bottom: 10rem
 }
 
 .main-event-content img {
-    max-height: 540px;
-    width: 100%;
+    height: 500px;
+    width: 620px;
     object-fit: cover;
 }
 
