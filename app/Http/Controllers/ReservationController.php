@@ -68,13 +68,11 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $reservation = Reservation::findOrFail($id);
-        $events = Event::all();
-        $users = User::all();
-        return view('reservation.edit', compact('reservation', 'events', 'users'));
+        return view('reservation.edit', ['id' => $id]);
     }
+
 
     /**
      * Update the specified resource in storage.
