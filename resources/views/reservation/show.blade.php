@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Réservation</title>
-</head>
+@section('title', 'Détails de la réservation')
 
-<body>
+@section('content')
+<div class="container">
     <h1>Détails de la réservation</h1>
-
-    <p><strong>Réservation ID :</strong> {{ $reservation->id }}</p>
-    <p><strong>Utilisateur :</strong> {{ $reservation->user->name }}</p>
-    <p><strong>Événement :</strong> {{ $reservation->event->name }}</p>
-    <p><strong>Places réservées :</strong> {{ $reservation->seats }}</p>
-    <p><strong>Date de l'événement :</strong> {{ $reservation->event->date }}</p>
-
-    <a href="{{ route('reservation.index') }}">Retour à la liste des réservations</a>
-    <a href="{{ route('reservation.edit', $reservation->id) }}">Modifier la réservation</a>
-</body>
-
-</html>
+    <p>Réservation ID : {{ $reservation->id }}</p>
+    <p>Utilisateur : {{ $reservation->user->name }}</p>
+    <p>Événement : {{ $reservation->event->name }}</p>
+    <p>Places réservées : {{ $reservation->seats }}</p>
+    <p>Date de l'événement : {{ $reservation->event->date }}</p>
+    <p>Réservation créée le : {{ $reservation->created_at }}</p>
+    <p>Réservation modifiée le : {{ $reservation->updated_at }}</p>
+    <a href="{{ route('reservation.index') }}" wire:navigate>Retour à la liste des réservations</a>
+    <a href="{{ route('reservation.edit', $reservation->id) }}" wire:navigate>Modifier la réservation</a>
+</div>
+@endsection

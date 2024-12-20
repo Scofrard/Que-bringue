@@ -12,7 +12,6 @@
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
-                @error('user_id') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div>
@@ -23,13 +22,11 @@
                     <option value="{{ $event->id }}">{{ $event->name }}</option>
                     @endforeach
                 </select>
-                @error('event_id') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label for="seats">Seats</label>
                 <input type="number" name="seats" id="seats" wire:model="seats" min="1" required>
-                @error('seats') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div>

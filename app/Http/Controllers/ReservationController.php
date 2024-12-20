@@ -73,27 +73,6 @@ class ReservationController extends Controller
         return view('reservation.edit', ['id' => $id]);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'event_id' => 'required|exists:events,id',
-            'seats' => 'required|integer|min:1',
-        ]);
-
-        $reservation = Reservation::findOrFail($id);
-
-        $reservation->seats = $reservation->seats !== $request->seats ? $request->seats : $reservation->seats;
-
-        $reservation->update($validated);
-
-        return redirect()->route('reservation.index');
-    }
-
     /**
      * Remove the specified resource from storage.
      */
