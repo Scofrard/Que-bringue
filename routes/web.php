@@ -59,7 +59,7 @@ Route::controller(EventController::class)->name('event.')->group(function () {
     Route::post('/event/update/{id}', 'update')->name('update');
     Route::get('/event/{id}', 'show')->name('show');
     Route::post('/event/store', 'store')->name('store');
-    //Localisation
+
     Route::get('/event/{id}/localisation/edit', [EventController::class, 'editLocalisation'])->name('localisation.edit');
     Route::post('/event/{id}/localisation/update', [EventController::class, 'updateLocalisation'])->name('localisation.update');
 });

@@ -1,60 +1,74 @@
 <div id="event-create-form">
-    <h1>Créer un nouvel événement</h1>
-    <form wire:submit.prevent="submit" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
+    <div class="container form">
         <div>
-            <label for="name">Nom de l'événement</label>
-            <input type="text" id="name" wire:model="name" placeholder="Nom" required>
+            <h1>Créer un événement</h1>
+            <form wire:submit.prevent="submit" enctype="multipart/form-data">
+                @csrf
+                @method('POST')
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nom de l'événement</label>
+                        <input type="text" id="name" wire:model="name" placeholder="Nom de l'événement" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" wire:model="description" placeholder="Description" required></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="seats">Places disponibles</label>
+                        <input type="number" id="seats" wire:model="seats" placeholder="Sièges" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date de l'événement</label>
+                        <input type="date" id="date" wire:model="date" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="time">Heure de l'événement</label>
+                        <input type="time" id="time" wire:model="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="attachment">Photo(s) de l'événement</label>
+                        <input type="file" id="attachment" wire:model="attachment" multiple>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="categories">Catégorie(s)</label>
+                        <select wire:model="category_ids" multiple>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="address-input">Search Address , City or Country</label>
+                        <input type="text" class="form-control map-input" id="address-input" wire:model.defer="addressInput">
+                    </div>
+                    <hr>
+                    <div id="address-map-container" style="width: 100%; height:400px;"> </div>
+                    <div style="width: 100%; height: 100%" id="address-map"></div>
+                    <div class="form-group">
+                        <label for="address-latitude">Latitude</label>
+                        <input type="text" class="form-control" id="address-latitude" wire:model.defer="addressLatitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="address-longitude">Longitude</label>
+                        <input type="text" class="form-control" id="address-longitude" wire:model.defer="addressLongitude">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary reservation">Créer</button>
+            </form>
+            @if (session()->has('success'))
+            <div style="color: #FF56C2;">{{ session('success') }}</div>
+            @endif
         </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" wire:model="description" placeholder="Description" required></textarea>
-        </div>
-        <div>
-            <label for="seats">Places disponibles</label>
-            <input type="number" id="seats" wire:model="seats" placeholder="Sièges" required>
-        </div>
-        <div>
-            <label for="date">Date de l'événement</label>
-            <input type="date" id="date" wire:model="date" required>
-        </div>
-        <div>
-            <label for="time">Heure de l'événement</label>
-            <input type="time" id="time" wire:model="time" required>
-        </div>
-        <div>
-            <label for="attachment">Photo(s) de l'événement</label>
-            <input type="file" id="attachment" wire:model="attachment" multiple>
-        </div>
-        <div>
-            <label for="categories">Catégorie(s)</label>
-            <select wire:model="category_ids" multiple>
-                @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="address-input" class="form-label">Search Address , City or Country</label>
-            <input type="text" class="form-control map-input" id="address-input" wire:model.defer="addressInput">
-        </div>
-        <hr>
-        <div id="address-map-container" style="width: 100%; height:400px;"> </div>
-        <div style="width: 100%; height: 100%" id="address-map"></div>
-        <div class="mb-3">
-            <label for="address-latitude" class="form-label">Latitude</label>
-            <input type="text" class="form-control" id="address-latitude" wire:model.defer="addressLatitude">
-        </div>
-        <div class="mb-3">
-            <label for="address-longitude" class="form-label">Longitude</label>
-            <input type="text" class="form-control" id="address-longitude" wire:model.defer="addressLongitude">
-        </div>
-        <button type="submit" class="btn btn-primary">Créer</button>
-    </form>
-    @if (session()->has('success'))
-    <div style="color: #FF56C2;">{{ session('success') }}</div>
-    @endif
+    </div>
 </div>
 
 @push('styles')
