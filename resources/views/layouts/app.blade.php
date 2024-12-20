@@ -7,7 +7,7 @@
     <title>@yield('title', 'Mon Application')</title>
     @livewireStyles
     @stack('styles')
-    <!-- Fonts -->
+    <link rel="icon" href="{{ asset('assets/svg/faviconquebringue.svg') }}" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=sora:400,500,600&display=swap?v=2" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/vmj5cbu.css">
