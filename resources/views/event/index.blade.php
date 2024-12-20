@@ -25,10 +25,10 @@
     @endforeach
     <li>Adresse : {{ $event->localisation->full_address ?? '-'}}</li>
 </ul>
-<a href="{{ route('reservation.create', ['event_id' => $event->id]) }} " wire:navigate>Réserver</a>
-<a href="{{ route('event.localisation.edit', $event->id) }}" wire:navigate>Modifier la localisation</a>
-<a href="{{ route('event.show', $event->id) }} " wire:navigate>Plus d'infos sur l'événement</a>
-<a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a>
+<a href="{{ route('reservation.create', ['event_id' => $event->id]) }} " wire:navigate>Réserver</a><br>
+<a href="{{ route('event.localisation.edit', $event->id) }}" wire:navigate>Modifier la localisation</a><br>
+<a href="{{ route('event.show', $event->id) }} " wire:navigate>Plus d'infos sur l'événement</a><br>
+<a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a><br>
 <form action="{{ route('event.destroy' , $event->id) }}" method="POST">
     @csrf
     @method('DELETE')

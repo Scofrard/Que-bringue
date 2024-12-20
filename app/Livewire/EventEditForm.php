@@ -3,12 +3,16 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\Event;
 use App\Models\Category;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class EventEditForm extends Component
 {
+    use WithFileUploads;
+
     public $event;
     public $categories;
     public $name;
@@ -18,20 +22,65 @@ class EventEditForm extends Component
     public $time;
     public $selectedCategories = [];
     public $newImages = [];
+    public $existingImages = [];
+
+    private function loadExistingImages()
+    {
+        $this->existingImages = $this->event->images->map(function ($image) {
+            return [
+                'id' => $image->id,
+                'path' => $image->path,
+            ];
+        })->toArray();
+    }
+
 
     public function mount($id)
     {
         $this->event = Event::with('categories')->findOrFail($id);
         $this->categories = Category::all();
-
-        // Initialisation des propriétés
         $this->name = $this->event->name;
         $this->description = $this->event->description;
         $this->seats = $this->event->seats;
         $this->date = Carbon::parse($this->event->date)->format('Y-m-d');
         $this->time = Carbon::parse($this->event->date)->format('H:i');
         $this->selectedCategories = $this->event->categories->pluck('id')->toArray();
+        $this->loadExistingImages();
     }
+
+    public function removeImage($imageId)
+    {
+        $image = $this->event->images()->find($imageId);
+
+        if ($image) {
+            Storage::delete($image->path);
+            $image->delete();
+        }
+
+        $this->loadExistingImages();
+        session()->flash('success', 'Image supprimée avec succès.');
+    }
+
+    public function updateImages()
+    {
+        $this->validate([
+            'newImages.*' => 'image|max:2048',
+        ]);
+
+        foreach ($this->newImages as $newImage) {
+            $path = $newImage->store('event_images', 'public');
+            $image = $this->event->images()->create(['path' => $path]);
+
+            $this->existingImages[] = [
+                'id' => $image->id,
+                'path' => $image->path,
+            ];
+        }
+
+        session()->flash('success', 'Images mises à jour avec succès.');
+    }
+
+
 
     public function submit()
     {

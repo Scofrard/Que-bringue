@@ -32,10 +32,17 @@
 
             <div>
                 <label for="attachment">Photo de l'événement</label>
-                @foreach ($event->images as $image)
-                <img src="{{ asset('storage/' . $image->path) }}" alt="Event Image" style="width: 150px; height: auto;">
+                @foreach ($existingImages as $image)
+                <div>
+                    <img src="{{ asset('storage/' . $image['path']) }}" alt="Image" style="width: 100px; height: auto;">
+                    <button type="button" wire:click="removeImage({{ $image['id'] }})">Supprimer</button>
+                </div>
                 @endforeach
-                <input type="file" id="attachment" wire:model="attachments" multiple>
+
+                <h3>Ajouter de nouvelles images</h3>
+                <input type="file" wire:model="newImages" multiple>
+
+                <button type="button" wire:click="updateImages">Enregistrer les images</button>
             </div>
 
             <div>
