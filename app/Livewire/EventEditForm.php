@@ -35,9 +35,9 @@ class EventEditForm extends Component
     }
 
 
-    public function mount($id)
+    public function mount($record)
     {
-        $this->event = Event::with('categories')->findOrFail($id);
+        $this->event = Event::with('categories')->findOrFail($record);
         $this->categories = Category::all();
         $this->name = $this->event->name;
         $this->description = $this->event->description;
@@ -80,8 +80,6 @@ class EventEditForm extends Component
         session()->flash('success', 'Images mises à jour avec succès.');
     }
 
-
-
     public function submit()
     {
         $validatedData = $this->validate([
@@ -108,6 +106,8 @@ class EventEditForm extends Component
 
     public function render()
     {
-        return view('livewire.event-edit-form');
+        return view('livewire.event-edit-form', [
+            'categories' => $this->categories,
+        ]);
     }
 }

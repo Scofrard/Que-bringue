@@ -17,14 +17,13 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-sparkles';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            \Filament\Forms\Components\View::make('livewire.event-edit-form'),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -35,6 +34,12 @@ class EventResource extends Resource
                     ->label('ID')
                     ->sortable()
                     ->searchable(),
+
+                Tables\Columns\ImageColumn::make('images.path')
+                    ->label('Images')
+                    ->getStateUsing(function ($record) {
+                        return optional($record->images->first())->path;
+                    }),
 
                 Tables\Columns\TextColumn::make('name')
                     ->label('Événement')
@@ -47,13 +52,20 @@ class EventResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('seats')
-                    ->label('Places disponibles')
+                    ->label('Places')
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('date')
                     ->label('Date et heure')
                     ->sortable()
                     ->dateTime('d/m/Y H:i'),
+
+                Tables\Columns\TextColumn::make('localisation.full_address')
+                    ->label('Adresse complète')
+                    ->sortable()
+                    ->searchable()
+                    ->default('Non renseignée'),
+
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')

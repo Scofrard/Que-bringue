@@ -34,7 +34,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="attachment">Photo de l'événement</label>
-                        @foreach ($existingImages as $image)
+                        @foreach (existingImages as $image)
                         <div>
                             <img src="{{ asset('storage/' . $image['path']) }}" alt="Image">
                             <button type="button" wire:click="removeImage({{ $image['id'] }})" class="btn-primary">Supprimer</button>
