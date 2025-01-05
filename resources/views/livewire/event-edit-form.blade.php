@@ -1,8 +1,7 @@
-<div id="event-edit-blade.php">
-    <div class="container">
+<div id="event-edit-blade">
+    <div class="container form">
         <div>
             <a href="{{ route('event.index') }}" wire:navigate>Revenir aux événements</a>
-            <h1>Modifier l'événement </h1>
             <form wire:submit.prevent="submit" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
@@ -34,7 +33,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="attachment">Photo de l'événement</label>
-                        @foreach (existingImages as $image)
+                        @foreach ($existingImages as $image)
                         <div>
                             <img src="{{ asset('storage/' . $image['path']) }}" alt="Image">
                             <button type="button" wire:click="removeImage({{ $image['id'] }})" class="btn-primary">Supprimer</button>
@@ -62,5 +61,4 @@
             @endif
         </div>
     </div>
-</div>
 </div>

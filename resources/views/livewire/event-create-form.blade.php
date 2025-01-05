@@ -1,7 +1,6 @@
 <div id="event-create-form">
     <div class="container form">
         <div>
-            <h1>Créer un événement</h1>
             <form wire:submit.prevent="submit" enctype="multipart/form-data">
                 @csrf
                 @method('POST')

@@ -97,7 +97,7 @@ class EventCreateForm extends Component
     public function render()
     {
         return view('livewire.event-create-form', [
-            'categories' => Category::all(), // Charger les catégories
+            'categories' => Category::all(),
         ]);
     }
 }

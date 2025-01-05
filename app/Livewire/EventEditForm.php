@@ -106,8 +106,6 @@ class EventEditForm extends Component
 
     public function render()
     {
-        return view('livewire.event-edit-form', [
-            'categories' => $this->categories,
-        ]);
+        return view('livewire.event-edit-form');
     }
 }
