@@ -22,9 +22,41 @@ class EventResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            \Filament\Forms\Components\View::make('livewire.event-edit-form'),
+            Forms\Components\TextInput::make('name')
+                ->label('Nom de l\'événement')
+                ->required()
+                ->maxLength(255),
+
+            Forms\Components\Textarea::make('description')
+                ->label('Description')
+                ->required(),
+
+            Forms\Components\TextInput::make('seats')
+                ->label('Places disponibles')
+                ->required()
+                ->numeric()
+                ->minValue(1),
+
+            Forms\Components\DatePicker::make('date_only')
+                ->label('Date')
+                ->required()
+                ->default(fn($record) => $record ? $record->date->format('Y-m-d') : null),
+
+            Forms\Components\TimePicker::make('time_only')
+                ->label('Heure')
+                ->required()
+                ->default(fn($record) => $record ? $record->date->format('H:i') : null),
+
+            Forms\Components\MultiSelect::make('categories')
+                ->label('Catégories')
+                ->relationship('categories', 'name'),
+
+            Forms\Components\FileUpload::make('newImages')
+                ->label('Ajouter des images')
+                ->multiple(),
         ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -60,12 +92,16 @@ class EventResource extends Resource
                     ->sortable()
                     ->dateTime('d/m/Y H:i'),
 
+                Tables\Columns\TextColumn::make('categories.name')
+                    ->label('Catégories')
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('localisation.full_address')
                     ->label('Adresse complète')
                     ->sortable()
                     ->searchable()
                     ->default('Non renseignée'),
-
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')
@@ -82,6 +118,7 @@ class EventResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
