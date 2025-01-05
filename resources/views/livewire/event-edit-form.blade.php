@@ -1,7 +1,6 @@
 <div id="event-edit-blade">
     <div class="container form">
         <div>
-            <a href="{{ route('event.index') }}" wire:navigate>Revenir aux événements</a>
             <form wire:submit.prevent="submit" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
@@ -62,3 +61,8 @@
         </div>
     </div>
 </div>
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+@endpush
