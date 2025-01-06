@@ -4,11 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
+use Filament\Forms;
 
 class UserResource extends Resource
 {
@@ -16,15 +14,11 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
-    public static function form(Form $form): Form
+    public static function form(Forms\Form $form): Forms\Form
     {
         return $form->schema([
             Forms\Components\TextInput::make('name')
                 ->label('Nom')
-                ->required(),
-
-            Forms\Components\TextInput::make('firstname')
-                ->label('Prénom')
                 ->required(),
 
             Forms\Components\TextInput::make('email')
@@ -32,43 +26,22 @@ class UserResource extends Resource
                 ->email()
                 ->required(),
 
-            Forms\Components\TextInput::make('phone')
-                ->label('Tel')
-                ->email()
-                ->required(),
-
-            Forms\Components\TextInput::make('login')
-                ->label('Login')
-                ->email()
-                ->required(),
-
             Forms\Components\TextInput::make('password')
                 ->label('Mot de passe')
                 ->password()
                 ->required()
-                ->dehydrateStateUsing(fn($state) => bcrypt($state)),
+                ->dehydrateStateUsing(fn($state) => bcrypt($state))
+                ->visibleOn('create'),  // Hide password field on edit
         ]);
     }
 
-    public static function table(Table $table): Table
+    public static function table(Tables\Table $table): Tables\Table
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
-                Tables\Columns\TextColumn::make('name')->label('Nom')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('firstname')->label('Prénom')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('email')->label('Email')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('phone')->label('Tel')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Créé le')->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')->label('Modifié le')->dateTime(),
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+        return $table->columns([
+            Tables\Columns\TextColumn::make('name')->label('Nom')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('email')->label('Email')->sortable()->searchable(),
+            Tables\Columns\TextColumn::make('created_at')->label('Créé le')->dateTime(),
+        ]);
     }
 
     public static function getPages(): array
