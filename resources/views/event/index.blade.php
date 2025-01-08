@@ -86,7 +86,8 @@
 <div class="category louper">
     <div class="bringues">
         <div class="bringuetitle">
-            <h2>Les bringues a nié louper</h2>
+            <h2>A nié louper</h2>
+            <img src="{{ asset('assets/svg/star-blue-pink.svg') }}" alt="Etoiles bleu et rose">
         </div>
         <div class="arrow">
             <a href="précédent" class="prev" data-tooltip-text="Précédent">
@@ -148,6 +149,7 @@
     <div class="bringues">
         <div class="bringuetitle">
             <h2>En couple</h2>
+            <img src="{{ asset('assets/svg/star-blue-yellow.svg') }}" alt="Etoiles bleu et jaune">
         </div>
         <div class="arrow">
             <a href="précédent" class="prev" data-tooltip-text="Précédent">
@@ -211,6 +213,7 @@
     <div class="bringues">
         <div class="bringuetitle">
             <h2>Entre potes</h2>
+            <img src="{{ asset('assets/svg/star-pink-yellow.svg') }}" alt="Etoiles rose et jaune">
         </div>
         <div class="arrow">
             <a href="précédent" class="prev" data-tooltip-text="Précédent">
@@ -272,6 +275,7 @@
     <div class="bringues">
         <div class="bringuetitle">
             <h2>En famille</h2>
+            <img src="{{ asset('assets/svg/star-pink-yellow.svg') }}" alt="Etoiles rose et jaune">
         </div>
         <div class="arrow">
             <a href="précédent" class="prev" data-tooltip-text="Précédent">
@@ -333,6 +337,7 @@
     <div class="bringues">
         <div class="bringuetitle">
             <h2>Pour les tchios</h2>
+            <img src="{{ asset('assets/svg/star-blue-pink.svg') }}" alt="Etoiles bleu et rose">
         </div>
         <div class="arrow">
             <a href="précédent" class="prev" data-tooltip-text="Précédent">
