@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <a href="{{ route('event.index') }}" wire:navigate>Revenir aux événements</a>
-    <div class="container main-event">
+    <div class="main-event">
         <div class="main-event-content">
             <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event banger">
         </div>
@@ -33,17 +33,22 @@
                 <p>Places restantes : {{ $event->seats }}</p>
             </div>
             <div>
-                @foreach ($event->categories as $category)
-                <p>Catégorie(s) : {{ $category->name }}</p>
-                @endforeach
+                <ul>
+                    <p>Catégories :</p>
+                    @foreach ($event->categories as $category)
+                    <li>{{ $category->name }}</li>
+                    @endforeach
+                </ul>
             </div>
             <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
         </div>
     </div>
     <p>{{ $event->description }}</p>
-    @foreach ($event->images->skip(1) as $image)
-    <img src="{{ asset('storage/' . $image->path) }}" alt="Image de l'événement" style="width: 150px; height: auto;">
-    @endforeach
+    <div class="galery">
+        @foreach ($event->images->skip(1) as $image)
+        <img src="{{ asset('storage/' . $image->path) }}" alt="Image de l'événement">
+        @endforeach
+    </div>
     <a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a>
 </div>
 @endsection

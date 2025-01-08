@@ -345,16 +345,12 @@ header {
 
 /* --- MAIN EVENT --- */
 
-.main-event {
-    display: flex;
-    align-items: center;
-}
-
 .container.main-event {
     padding-bottom: 10rem
 }
 
 .main-event-content img {
+    max-width: 100%;
     height: 400px;
     width: 400px;
     object-fit: cover;
@@ -383,6 +379,7 @@ header {
     .main-event {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 30px;
         padding: 5rem 0;
     }
@@ -1224,5 +1221,36 @@ button:focus {
     .form-group input,
     .form-group select {
         width: 600px;
+    }
+}
+
+/* --- GALERY --- */
+
+.galery {
+    display: block;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.galery img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 1rem 0;
+}
+
+@media screen and (min-width: 620px) {
+
+    .galery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 930px) {
+
+    .galery {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
