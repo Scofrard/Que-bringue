@@ -53,7 +53,7 @@
 <a href="{{ route('event.show', $eventBanger->id) }}" wire:navigate>
     <div class="container main-event">
         <div class="main-event-content">
-            <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event banger">
+            <img src="{{ asset('storage/./' . $eventBanger->images[0]->path) }}" alt="Event banger">
         </div>
         <div class="main-event-infos">
             <h1>{{ $eventBanger->name }}</h1>
@@ -73,7 +73,7 @@
                         d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z">
                     </path>
                 </svg>
-                <p>{{ $event->localisation->full_address ?? '-'}}</p>
+                <p>{{ $eventBanger->localisation->full_address ?? '-'}}</p>
             </div>
             <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
         </div>
