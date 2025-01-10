@@ -26,14 +26,18 @@
             @if (Route::has('login'))
             <nav>
                 @auth
-                <a href="{{ url('/dashboard') }}" wire:navigate>Dashboard</a>
+                <a href="{{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                    @csrf
+                    <button type="submit">Déconnexion</button>
+                </form>
                 @else
                 <a href="{{ route('login') }}" wire:navigate>Connexion</a>
+                <span>/</span>
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}" wire:navigate>Inscription</a>
                 @endif
                 @endauth
-                <a href=" {{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
             </nav>
             @endif
         </div>

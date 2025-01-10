@@ -7,14 +7,14 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email">{{ __('Email') }}</label>
-                        <input id="email" type="email" wire:model="email" required autofocus>
+                        <input id="email" type="email" wire:model="email" placeholder="Email" required autofocus>
 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="password">{{ __('Mot de passe') }}</label>
-                        <input id="password" type="password" wire:model="password" required>
+                        <input id="password" type="password" wire:model="password" placeholder="Mot de passe" required>
                     </div>
                 </div>
                 <div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}">
+                    <a href="{{ route('password.request') }}" wire:navigate>
                         {{ __('Mot de passe oublié ?') }}
                     </a>
                     @endif
@@ -43,7 +43,6 @@
         @endif
         </form>
     </div>
-</div>
 </div>
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
