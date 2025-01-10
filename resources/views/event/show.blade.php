@@ -49,6 +49,33 @@
         <img src="{{ asset('storage/' . $image->path) }}" alt="Image de l'événement">
         @endforeach
     </div>
+    @if($latitude && $longitude)
+    <div class="map">
+        <div id="map"></div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination={{ $latitude }},{{ $longitude }}" target="_blank" class="btn-tertiaire map-button">
+            Itinéraire
+        </a>
+    </div>
+    <script>
+        function initMap() {
+            var location = {
+                lat: parseFloat(@json($latitude)),
+                lng: parseFloat(@json($longitude))
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEBQqSJKJORH9pB2cr1TWAxOnqUYX8hQ&callback=initMap" async defer></script>
+    @else
+    <p>Aucune information concernant le lieu de l'événement</p>
+    @endif
     <a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a>
 </div>
 @endsection

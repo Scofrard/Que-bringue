@@ -1269,3 +1269,20 @@ button:focus {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+
+/* --- MAP --- */
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.map {
+    position: relative;
+}
+
+.map-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}

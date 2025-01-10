@@ -57,40 +57,15 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $event = Event::findOrFail($id);
+        $event = Event::with('localisation')->findOrFail($id); // Charger l'événement avec sa localisation
 
-        $latitude = 17.189877;
-        $longitude = -88.49765;
+        // Utilisez les coordonnées de la localisation si disponibles
+        $latitude = $event->localisation->latitude ?? null;
+        $longitude = $event->localisation->longitude ?? null;
 
-        $initialMarkers = [
-            [
-                'position' => [
-                    'lat' => 28.625485,
-                    'lng' => 79.821091
-                ],
-                'label' => ['color' => 'white', 'text' => 'P1'],
-                'draggable' => true
-            ],
-            [
-                'position' => [
-                    'lat' => 28.625293,
-                    'lng' => 79.817926
-                ],
-                'label' => ['color' => 'white', 'text' => 'P2'],
-                'draggable' => false
-            ],
-            [
-                'position' => [
-                    'lat' => 28.625182,
-                    'lng' => 79.81464
-                ],
-                'label' => ['color' => 'white', 'text' => 'P3'],
-                'draggable' => true
-            ]
-        ];
-
-        return view('event.show', compact('event', 'latitude', 'longitude', 'initialMarkers'));
+        return view('event.show', compact('event', 'latitude', 'longitude'));
     }
+
 
     /**
      * Show the form for creating a new resource.
