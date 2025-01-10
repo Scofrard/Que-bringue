@@ -1092,6 +1092,10 @@ footer {
     position: relative;
 }
 
+.auth-form {
+    padding: 8rem 0;
+}
+
 h1.form-title {
     color: var(--white);
     font-size: 1.8rem;
@@ -1137,7 +1141,7 @@ h1.form-title {
     color: var(--black);
     background-color: var(--white);
     border: 3px solid var(--white);
-    padding: 16px;
+    padding: 8px;
     font-family: "cubano", sans-serif;
     font-weight: 500;
     font-size: 22px;
@@ -1222,6 +1226,10 @@ button:focus {
     color: var(--white);
 }
 
+.error {
+    margin: 1rem 0;
+}
+
 .success {
     margin: 1rem 0;
 }
@@ -1231,11 +1239,12 @@ button:focus {
     h1.form-title {
         color: var(--white);
         font-size: 2.5rem;
+        text-align: center;
     }
 
     .form-group input,
     .form-group select {
-        width: 600px;
+        width: 400px;
     }
 }
 
