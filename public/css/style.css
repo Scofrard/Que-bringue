@@ -1093,7 +1093,7 @@ footer {
 }
 
 .auth-form {
-    padding: 8rem 0;
+    padding: 3rem 0;
 }
 
 h1.form-title {
@@ -1149,12 +1149,22 @@ h1.form-title {
     margin: .5rem 0;
 }
 
+.form-group a {
+    text-align: center;
+    padding: 8px 0;
+    text-decoration: underline;
+}
+
 input:focus,
 input[type="number"]:focus,
 select:focus,
 button:focus {
     outline: none;
     border-color: var(--yellow);
+}
+
+.remember {
+    margin-bottom: 1rem;
 }
 
 .places-group {
