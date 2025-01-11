@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Mon Application')</title>
+    <title>@yield('title', 'Qué bringue')</title>
     @livewireStyles
     @stack('styles')
     <link rel="icon" href="{{ asset('assets/svg/faviconquebringue.svg') }}" type="image/x-icon" />

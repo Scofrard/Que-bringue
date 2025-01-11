@@ -12,6 +12,12 @@ class LoginForm extends Component
     public $password;
     public $remember = false;
 
+    protected $messages = [
+        'email.required' => 'Le champ email est obligatoire.',
+        'email.email' => 'Veuillez entrer une adresse email valide.',
+        'password.required' => 'Le champ mot de passe est obligatoire.',
+    ];
+
     public function login()
     {
         $credentials = $this->validate([
@@ -22,6 +28,7 @@ class LoginForm extends Component
         if (Auth::attempt($credentials, $this->remember)) {
             session()->regenerate();
             session()->flash('success', 'Connexion réussie !');
+            return;
         }
 
         throw ValidationException::withMessages([
