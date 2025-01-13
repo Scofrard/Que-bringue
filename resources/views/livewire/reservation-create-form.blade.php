@@ -5,7 +5,7 @@
         </a>
         <div class="form">
             <div>
-                <h1 class="form-title">Réserve ichi ta bringue</h3>
+                <h1 class="form-title">Réserve t'place ichi</h3>
                     <form wire:submit.prevent="submit" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
