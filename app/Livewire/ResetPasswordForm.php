@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Password;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 
-class ForgotPasswordForm extends Component
+class ResetPasswordForm extends Component
 {
     public $email;
     public $token;
@@ -26,6 +26,13 @@ class ForgotPasswordForm extends Component
         'password.regex' => 'Le mot de passe doit contenir au moins une majuscule.',
         'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
     ];
+
+    public function mount($token, $email)
+    {
+        // Initialiser le token et l'email dans le composant
+        $this->token = $token;
+        $this->email = $email;
+    }
 
     public function submit()
     {
