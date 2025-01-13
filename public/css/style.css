@@ -1305,3 +1305,56 @@ button:focus {
     bottom: 10px;
     left: 10px;
 }
+
+/* --- RESERVATIONS --- */
+
+.reservation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reservation-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+}
+
+.event-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.reservation-details {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.event-title {
+    font-size: 18px;
+    margin: 0 0 5px;
+}
+
+.event-title a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.event-title a:hover {
+    text-decoration: underline;
+}
+
+.event-date,
+.seats-info {
+    margin: 5px 0;
+    font-size: 14px;
+    color: var(--black);
+}
+
+.reservation-actions {
+    display: flex;
+    gap: 10px;
+}

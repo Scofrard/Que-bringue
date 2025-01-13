@@ -13,11 +13,13 @@ class ResetPasswordForm extends Component
     public $password;
     public $password_confirmation;
 
+    // Validation des données
     protected $rules = [
         'email' => 'required|string|email|max:255',
         'password' => 'required|string|min:8|regex:/[A-Z]/|confirmed',
     ];
 
+    // Messages d'erreur pour la validation
     protected $messages = [
         'email.required' => 'Le champ email est obligatoire.',
         'email.email' => 'Le champ email doit être une adresse valide.',
@@ -27,17 +29,12 @@ class ResetPasswordForm extends Component
         'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
     ];
 
-    public function mount($token, $email)
-    {
-        // Initialiser le token et l'email dans le composant
-        $this->token = $token;
-        $this->email = $email;
-    }
-
+    // Méthode qui sera appelée lors de la soumission du formulaire
     public function submit()
     {
         $this->validate();
 
+        // Réinitialiser le mot de passe via la façade Password
         $status = Password::reset(
             [
                 'email' => $this->email,
@@ -46,20 +43,24 @@ class ResetPasswordForm extends Component
                 'token' => $this->token,
             ],
             function ($user, $password) {
+                // Mettre à jour le mot de passe de l'utilisateur
                 $user->forceFill([
                     'password' => Hash::make($password),
                 ])->save();
             }
         );
 
+        // Si la réinitialisation a réussi
         if ($status == Password::PASSWORD_RESET) {
             session()->flash('message', 'Votre mot de passe a été réinitialisé avec succès.');
             return redirect()->route('login');
         } else {
+            // Si un problème survient, afficher l'erreur
             $this->addError('email', __($status));
         }
     }
 
+    // La méthode render permet de rendre la vue associée à ce composant
     public function render()
     {
         return view('livewire.reset-password-form');

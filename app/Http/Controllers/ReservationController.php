@@ -14,11 +14,11 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::with(['user', 'event'])->get();
-        $users = User::all();
-        $events = Event::all();
+        $reservations = Reservation::with(['user', 'event'])
+            ->where('user_id', auth()->id())
+            ->get();
 
-        return view('reservation.index', compact('reservations', 'users', 'events'));
+        return view('reservation.index', compact('reservations'));
     }
 
     /**
