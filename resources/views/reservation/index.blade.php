@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h1>{{ $reservations->count() }} bringues réservées</h1>
+    <h1 class="reservation-title">{{ $reservations->count() }} {{ $reservations->count() > 1 ? 'bringues réservées' : 'bringue réservée' }} </h1>
     <div class="reservation-list">
         @foreach ($reservations as $reservation)
         <div class="reservation-card">
@@ -16,10 +16,10 @@
                     <a href="{{ route('event.show', $reservation->event->id) }}">{{ $reservation->event->name }}</a>
                 </h2>
                 <p class="event-date">{{ \Carbon\Carbon::parse($reservation->event->date)->format('d/m/Y H:i') }}</p>
-                <p class="seats-info">{{ $reservation->seats }} places réservées</p>
+                <p class="seats-info">{{ $reservation->seats }} {{ $reservation->seats > 1 ? 'places réservées' : 'place réservée' }}</p>
             </div>
             <div class="reservation-actions">
-                <a href="{{ route('reservation.show', $reservation->id) }}" wire:navigate>Voir la reservation</a>
+                <a href="{{ route('reservation.show', $reservation->id) }}" wire:navigate>Détails</a>
                 <a href="{{ route('reservation.edit', $reservation->id) }}" wire:navigate>Modifier</a>
                 @livewire('reservation-destroy-form', ['reservationId' => $reservation->id])
             </div>

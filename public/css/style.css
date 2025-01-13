@@ -71,6 +71,23 @@ p {
     line-height: 22px;
 }
 
+/* --- BUTTON --- */
+
+button {
+    cursor: pointer;
+    font-family: "cubano", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem;
+    border: none;
+    color: var(--white);
+    background-color: var(--black);
+}
+
+button:hover {
+    text-decoration: underline;
+}
+
 .btn-primary {
     color: var(--black);
     background-color: var(--yellow);
@@ -1308,6 +1325,11 @@ button:focus {
 
 /* --- RESERVATIONS --- */
 
+.reservation-title {
+    font-size: 2rem;
+    margin: 3rem 0 2rem 0;
+}
+
 .reservation-list {
     display: flex;
     flex-direction: column;
@@ -1318,8 +1340,8 @@ button:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
-    padding: 15px;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--white);
 }
 
 .event-image img {
@@ -1340,7 +1362,6 @@ button:focus {
 
 .event-title a {
     text-decoration: none;
-    color: var(--black);
 }
 
 .event-title a:hover {
@@ -1351,10 +1372,10 @@ button:focus {
 .seats-info {
     margin: 5px 0;
     font-size: 14px;
-    color: var(--black);
 }
 
 .reservation-actions {
     display: flex;
+    align-items: center;
     gap: 10px;
 }

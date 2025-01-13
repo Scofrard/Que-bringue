@@ -26,11 +26,11 @@
             @if (Route::has('login'))
             <nav>
                 @auth
-                <a href="{{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
                     <button type="submit">Déconnexion</button>
                 </form>
+                <a href="{{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
                 @else
                 <a href="{{ route('login') }}" wire:navigate>Connexion</a>
                 <span>/</span>
