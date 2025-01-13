@@ -9,7 +9,7 @@
         @foreach ($reservations as $reservation)
         <div class="reservation-card">
             <div class="event-image">
-                <img src="{{ $reservation->event->images[0]->path ?? 'default-event.jpg' }}" alt="Image de l'événement">
+                <img src="{{ asset('storage/./' . $reservation->event->images[0]->path ?? 'storage/./' . $reservation->event->images[0]->$image->path) }}" alt="Event à nié louper">
             </div>
             <div class="reservation-details">
                 <h2 class="event-title">
