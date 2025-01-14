@@ -4,7 +4,7 @@
 
 @section('content')
 
-<!-- AFFICHER TOUS LES EVENEMENTS -->
+<!-- AFFICHER TOUS LES EVENEMENTS
 
 <a href="{{ route('event.create') }}" wire:navigate>Créer un nouvel événement</a>
 @foreach ($events as $event)
@@ -34,7 +34,7 @@
     @method('DELETE')
     <button type="submit">Supprimer l'événement</button>
 </form>
-@endforeach
+@endforeach -->
 
 
 <!--- BANDEAU --->
