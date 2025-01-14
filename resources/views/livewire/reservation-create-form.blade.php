@@ -1,6 +1,6 @@
 <div id="reservation-create-form">
     <div class="container">
-        <a href="javascript:void(0);" class="close-btn">
+        <a href="{{ route('event.index') }}" class="close-btn" wire:navigate>
             <img src="{{ asset('assets/svg/rollback.svg') }}" alt="Revenir en arrière">
         </a>
         <div class="form">
@@ -8,7 +8,6 @@
                 <h1 class="form-title">Réserve t'place ichi</h3>
                     <form wire:submit.prevent="submit" enctype="multipart/form-data">
                         @csrf
-                        @method('POST')
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event_id">Événement :</label>
@@ -16,15 +15,6 @@
                                     <option value="">Sélectionner un événement</option>
                                     @foreach ($events as $event)
                                     <option value="{{ $event->id }}">{{ $event->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_id">Nom d'utilisateur :</label>
-                                <select name="user_id" id="user_id" wire:model="user_id" required>
-                                    <option value="">Nom d'utilisateur</option>
-                                    @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

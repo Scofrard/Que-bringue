@@ -50,22 +50,6 @@ class ReservationController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'event_id' => 'required|exists:events,id',
-            'seats' => 'required',
-        ]);
-
-        Reservation::create($validated);
-
-        return redirect()->route('reservation.index');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)

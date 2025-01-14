@@ -4,7 +4,9 @@
 
 @section('content')
 <div class="container">
-    <a href="{{ route('event.index') }}" wire:navigate>Revenir aux événements</a>
+    <a href="{{ route('event.index') }}" class="close-btn" wire:navigate>
+        <img src="{{ asset('assets/svg/rollback.svg') }}" alt="Revenir en arrière">
+    </a>
     <div class="main-event">
         <div class="main-event-content">
             <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event banger">
