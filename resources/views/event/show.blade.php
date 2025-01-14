@@ -4,9 +4,11 @@
 
 @section('content')
 <div class="container">
-    <a href="{{ route('event.index') }}" class="close-btn" wire:navigate>
-        <img src="{{ asset('assets/svg/rollback.svg') }}" alt="Revenir en arrière">
-    </a>
+    <div class="details-hero">
+        <a href="{{ route('event.index') }}" class="close-btn" wire:navigate>
+            <img src="{{ asset('assets/svg/rollback.svg') }}" alt="Revenir en arrière">
+        </a>
+    </div>
     <div class="main-event">
         <div class="main-event-content">
             <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event banger">
@@ -34,14 +36,6 @@
             <div>
                 <p>Places restantes : {{ $event->seats }}</p>
             </div>
-            <div>
-                <ul>
-                    <p>Catégories :</p>
-                    @foreach ($event->categories as $category)
-                    <li>{{ $category->name }}</li>
-                    @endforeach
-                </ul>
-            </div>
             <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
         </div>
     </div>
@@ -52,6 +46,7 @@
         @endforeach
     </div>
     @if($latitude && $longitude)
+    <h2 class="map-title">Le chemin est tout tracé</h2>
     <div class="map">
         <div id="map"></div>
         <a href="https://www.google.com/maps/dir/?api=1&destination={{ $latitude }},{{ $longitude }}" target="_blank" class="btn-tertiaire map-button">

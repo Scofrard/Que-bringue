@@ -28,12 +28,40 @@
             <p><span>Adresse de l'événement :</span> {{ $reservation->event->localisation->full_address }}</p>
             <p><span>Date de l'événement :</span> {{ \Carbon\Carbon::parse($reservation->event->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($reservation->event->date)->format('H:i')) }}
             </p>
-            <p><span>Réservation effectuée le :</span> {{ \Carbon\Carbon::parse($reservation->event->created_at)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($reservation->event->created_at)->format('H:i')) }}</p>
+            <p><span>Réservation effectuée le :</span> {{ \Carbon\Carbon::parse($reservation->created_at)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($reservation->event->created_at)->format('H:i')) }}</p>
             <div class="reservation-actions">
                 <a href="{{ route('reservation.edit', $reservation->id) }}" wire:navigate>Modifier</a>
                 @livewire('reservation-destroy-form', ['reservationId' => $reservation->id])
             </div>
         </div>
     </div>
+    @if($latitude && $longitude)
+    <h2 class="map-title">Le chemin est tout tracé</h2>
+    <div class="map">
+        <div id="map"></div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination={{ $latitude }},{{ $longitude }}" target="_blank" class="btn-tertiaire map-button">
+            Itinéraire
+        </a>
+    </div>
+    <script>
+        function initMap() {
+            var location = {
+                lat: parseFloat(@json($latitude)),
+                lng: parseFloat(@json($longitude))
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEBQqSJKJORH9pB2cr1TWAxOnqUYX8hQ&callback=initMap" async defer></script>
+    @else
+    <p>Aucune information concernant le lieu de l'événement</p>
+    @endif
 </div>
 @endsection

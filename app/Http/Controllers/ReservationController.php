@@ -28,7 +28,10 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::with(['user', 'event'])->findOrFail($id);
 
-        return view('reservation.show', compact('reservation'));
+        $latitude = $reservation->event->localisation->latitude ?? null;
+        $longitude = $reservation->event->localisation->longitude ?? null;
+
+        return view('reservation.show', compact('reservation', 'latitude', 'longitude'));
     }
 
 

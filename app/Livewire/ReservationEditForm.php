@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationEditForm extends Component
 {
@@ -20,6 +21,11 @@ class ReservationEditForm extends Component
 
     public function mount($id)
     {
+
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $this->reservationId = $id;
         $reservation = Reservation::findOrFail($id);
 
@@ -28,9 +34,21 @@ class ReservationEditForm extends Component
         $this->event_id = $reservation->event_id;
         $this->seats = $reservation->seats;
 
-        // Load users and events for the dropdowns
         $this->users = User::all();
         $this->events = Event::all();
+    }
+
+    public function increment()
+    {
+        $this->seats++;
+    }
+
+    // Méthode pour décrémenter le nombre de places
+    public function decrement()
+    {
+        if ($this->seats > 1) {
+            $this->seats--;
+        }
     }
 
     public function submit()
