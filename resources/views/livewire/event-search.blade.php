@@ -5,7 +5,7 @@
             placeholder="Rechercher un événement..."
             wire:model.live="search">
     </form>
-    <div class="event.list">
+    <div class="event-list">
         @foreach ($events as $event)
         <div class="event-item">
             <a href="{{ route('event.show', $event->id) }}" wire:navigate>

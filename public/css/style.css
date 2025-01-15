@@ -1434,6 +1434,7 @@ button:focus {
     justify-content: center;
     margin: 2rem 0;
     width: 100%;
+    position: relative;
 }
 
 .search-bar {
@@ -1444,6 +1445,16 @@ button:focus {
     border-bottom: 1px solid var(--white);
     background-color: var(--black);
     color: var(--white);
+}
+
+.event-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: var(--black);
 }
 
 .event-item {
