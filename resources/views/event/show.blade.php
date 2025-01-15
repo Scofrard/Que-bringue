@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bringue')
+@section('title', $event->name)
 
 @section('content')
 <div class="container">
@@ -73,6 +73,5 @@
     @else
     <p>Aucune information concernant le lieu de l'événement</p>
     @endif
-    <a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a>
 </div>
 @endsection

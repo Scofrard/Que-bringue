@@ -866,7 +866,7 @@ a[data-tooltip-text]:hover::after {
     color: var(--black);
 }
 
-.stars svg {
+.stars img {
     width: 18px;
 }
 
