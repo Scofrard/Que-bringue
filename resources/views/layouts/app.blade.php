@@ -123,8 +123,8 @@
             <div class="footercolumn four">
                 <h5>Infos</h5>
                 <ul>
-                    <li><a href="#">Politique de confidentialité</a></li>
-                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="{{ route('politique-de-confidentialite') }}" wire:navigate>Politique de confidentialité</a></li>
+                    <li><a href="{{ route('mentions-legales') }}" wire:navigate>Mentions légales</a></li>
                 </ul>
             </div>
         </div>

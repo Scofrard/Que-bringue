@@ -20,10 +20,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/maps', function () {
-    return view('maps');
-})->name('maps');
-
 //User
 Route::controller(UserController::class)->name('user.')->group(function () {
     Route::get('/users', 'index')->name('index');
@@ -109,3 +105,11 @@ Route::controller(CategoryEventController::class)->name('categoryevent.')->group
     Route::get('/categoryevent', 'show')->name('show');
     Route::get('/categoryevent/store', 'store')->name('store');
 });
+
+Route::get('/politique-de-confidentialite', function () {
+    return view('politique-de-confidentialite');
+})->name('politique-de-confidentialite');
+
+Route::get('/mentions-legales', function () {
+    return view('mentions-legales');
+})->name('mentions-legales');
