@@ -1,5 +1,5 @@
 <div id="forgot-password-form">
-    <div class="container form">
+    <div class="form">
         <div class="auth-form">
             <h1 class="form-title">Mot de passe oublié</h1>
             <form wire:submit.prevent="submit">
