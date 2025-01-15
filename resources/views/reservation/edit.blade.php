@@ -3,5 +3,5 @@
 @section('title', 'Modifier la réservation')
 
 @section('content')
-@livewire('reservation-edit-form', ['id' => $id])
+@livewire('reservation-edit-form', ['reservation_id' => $id])
 @endsection

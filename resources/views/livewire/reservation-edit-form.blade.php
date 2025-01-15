@@ -12,13 +12,8 @@
                     @csrf
                     @method('POST')
                     <div class="form-group">
-                        <label for="event_id">Evénement</label>
-                        <select name="event_id" id="event_id" wire:model="event_id" required>
-                            <option value="">Select Event</option>
-                            @foreach ($events as $event)
-                            <option value="{{ $event->id }}">{{ $event->name }}</option>
-                            @endforeach
-                        </select>
+                        <label for="event_name">Événement :</label>
+                        <input type="text" id="event_name" value="{{ $event->name }}" disabled>
                     </div>
                     <div class="places-group">
                         <label for="seats">Places :</label>

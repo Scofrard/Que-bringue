@@ -1,5 +1,5 @@
 <div id="event-create-form">
-    <div class="container form">
+    <div class="form">
         <div class="auth-form">
             <h1 class="form-title">Connexion</h1>
             <form wire:submit.prevent="login">
