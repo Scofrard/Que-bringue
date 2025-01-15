@@ -6,17 +6,12 @@
         <div class="form">
             <div>
                 <h1 class="form-title">Réserve t'place ichi</h3>
-                    <form wire:submit.prevent="submit" enctype="multipart/form-data">
+                    <form wire:submit.prevent="submit({{ $event->id}})" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="event_id">Événement :</label>
-                                <select name="event_id" id="event_id" wire:model="event_id" required>
-                                    <option value="">Sélectionner un événement</option>
-                                    @foreach ($events as $event)
-                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" value="{{ $event->name }}" disabled>
                             </div>
                         </div>
                         <div class="form-row">

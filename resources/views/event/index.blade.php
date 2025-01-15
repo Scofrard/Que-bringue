@@ -80,7 +80,7 @@
                 </svg>
                 <p>{{ $eventBanger->localisation->full_address ?? '-'}}</p>
             </div>
-            <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
+            <a href="{{ route('reservation.create', ['event_id' => $eventBanger->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
         </div>
     </div>
 </a>
