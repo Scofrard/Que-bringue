@@ -47,9 +47,11 @@
     </div>
 </div>
 
-<div class="search-event">
-    <img id="search-icon" src="{{ asset('assets/svg/search.svg') }}" alt="Rechercher">
-    @livewire('event-search')
+<div class="desktop-hidden">
+    <div class="search-event">
+        <img id="search-icon" src="{{ asset('assets/svg/search.svg') }}" alt="Rechercher">
+        @livewire('event-search')
+    </div>
 </div>
 
 <!--- MAIN EVENT --->

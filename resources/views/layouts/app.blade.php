@@ -22,13 +22,19 @@
                 <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
             </a>
         </div>
+        <div class="mobile-hidden">
+            <div class="search-event">
+                <img id="search-icon" src="{{ asset('assets/svg/search.svg') }}" alt="Rechercher">
+                @livewire('event-search')
+            </div>
+        </div>
         <div class="btnreservation">
             @if (Route::has('login'))
             <nav>
                 @auth
                 <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
                     @csrf
-                    <button type="submit"><img src="{{ asset('assets/svg/log-out.svg') }}" alt="Déconnexion"></button>
+                    <button type="submit" class="logout"><img src="{{ asset('assets/svg/log-out.svg') }}" alt="Déconnexion"></button>
                 </form>
                 <a href="{{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
                 @else
