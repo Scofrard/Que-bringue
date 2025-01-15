@@ -57,7 +57,7 @@
 <!--- MAIN EVENT --->
 
 @if ($eventBanger)
-<a href="{{ route('event.show', $eventBanger->id) }}" wire:navigate>
+<a href="{{ route('event.show', $eventBanger->id) }}" aria-label="Plus d'infos sur l'événement {{ $eventBanger->name }}" wire:navigate>
     <div class="container main-event">
         <div class="main-event-content">
             <img src="{{ asset('storage/./' . $eventBanger->images[0]->path) }}" alt="Event banger">
@@ -82,7 +82,7 @@
                 </svg>
                 <p>{{ $eventBanger->localisation->full_address ?? '-'}}</p>
             </div>
-            <a href="{{ route('reservation.create', ['event_id' => $eventBanger->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
+            <a href="{{ route('reservation.create', ['event_id' => $eventBanger->id]) }}" class="btn-secondary" aria-label="Réservez sa place pour l'événement {{ $eventBanger->name }}" wire:navigate>Réserver</a>
         </div>
     </div>
 </a>
@@ -97,14 +97,14 @@
             <img src="{{ asset('assets/svg/star-blue-pink.svg') }}" alt="Etoiles bleu et rose">
         </div>
         <div class="arrow">
-            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent" aria-label="Précédent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
                 </svg>
                 <span class="linkvisible">Précédent</span>
             </a>
-            <a href="suivant" class="next" data-tooltip-text="Suivant">
+            <a href="suivant" class="next" data-tooltip-text="Suivant" aria-label="Suivant">>
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
@@ -118,7 +118,7 @@
         <p class="noevent">Aucune bringue à nié louper</p>
         @else
         @foreach ($eventsCategoryOne as $event)
-        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+        <a href="{{ route('event.show', $event->id) }}" aria-label="Plus d'infos sur l'événement {{ $event->name }}" wire:navigate>
             <div class="card backgroundyellow">
                 <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
                 <div class="contentcard">
@@ -141,7 +141,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" aria-label="Réservez sa place pour l'événement {{ $event->name }}" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -159,14 +159,14 @@
             <img src="{{ asset('assets/svg/star-blue-yellow.svg') }}" alt="Etoiles bleu et jaune">
         </div>
         <div class="arrow">
-            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent" aria-label="Précédent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
                 </svg>
                 <span class="linkvisible">Précédent</span>
             </a>
-            <a href="suivant" class="next" data-tooltip-text="Suivant">
+            <a href="suivant" class="next" data-tooltip-text="Suivant" aria-label="Suivant">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
@@ -180,7 +180,7 @@
         <p class="noevent-white">Aucune bringues pour votre couple</p>
         @else
         @foreach ($eventsCategoryTwo as $event)
-        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+        <a href="{{ route('event.show', $event->id) }}" aria-label="Plus d'infos sur l'événement {{ $event->name }}" wire:navigate>
             <div class="card backgroundpink">
                 @if (!$event->images->isEmpty())
                 <img src="{{ asset('storage/./' . $event->images[0]->path) }}" alt="Event à nié louper">
@@ -205,7 +205,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" aria-label="Réservez sa place pour l'événement {{ $event->name }}" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -223,14 +223,14 @@
             <img src="{{ asset('assets/svg/star-pink-yellow.svg') }}" alt="Etoiles rose et jaune">
         </div>
         <div class="arrow">
-            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent" aria-label="Précédent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
                 </svg>
                 <span class="linkvisible">Précédent</span>
             </a>
-            <a href="suivant" class="next" data-tooltip-text="Suivant">
+            <a href="suivant" class="next" data-tooltip-text="Suivant" aria-label="Suivant">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
@@ -244,7 +244,7 @@
         <p class="noevent-white">Aucune bringue à faire entre poto</p>
         @else
         @foreach ($eventsCategoryThree as $event)
-        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+        <a href="{{ route('event.show', $event->id) }}" aria-label="Plus d'infos sur l'événement {{ $event->name }}" wire:navigate>
             <div class="card backgroundblack">
                 <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
                 <div class="contentcard">
@@ -267,7 +267,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" aria-label="Réservez sa place pour l'événement {{ $event->name }}" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -285,14 +285,14 @@
             <img src="{{ asset('assets/svg/star-pink-yellow.svg') }}" alt="Etoiles rose et jaune">
         </div>
         <div class="arrow">
-            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent" aria-label="Précédent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
                 </svg>
                 <span class="linkvisible">Précédent</span>
             </a>
-            <a href="suivant" class="next" data-tooltip-text="Suivant">
+            <a href="suivant" class="next" data-tooltip-text="Suivant" aria-label="Suivant">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
@@ -306,7 +306,7 @@
         <p class="noevent-white">Aucune bringue à faire en famille</p>
         @else
         @foreach ($eventsCategoryFour as $event)
-        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+        <a href="{{ route('event.show', $event->id) }}" aria-label="Plus d'infos sur l'événement {{ $event->name }}" wire:navigate>
             <div class="card backgroundblue">
                 <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
                 <div class="contentcard">
@@ -329,7 +329,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" aria-label="Réservez sa place pour l'événement {{ $event->name }}" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -347,14 +347,14 @@
             <img src="{{ asset('assets/svg/star-blue-pink.svg') }}" alt="Etoiles bleu et rose">
         </div>
         <div class="arrow">
-            <a href="précédent" class="prev" data-tooltip-text="Précédent">
+            <a href="précédent" class="prev" data-tooltip-text="Précédent" aria-label="Précédent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
                 </svg>
                 <span class="linkvisible">Précédent</span>
             </a>
-            <a href="suivant" class="next" data-tooltip-text="Suivant">
+            <a href="suivant" class="next" data-tooltip-text="Suivant" aria-label="Suivant">
                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24"
                     style="fill: rgba(13, 13, 13, 1);">
                     <path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
@@ -368,7 +368,7 @@
         <p class="noevent">Aucune bringue pour vos mômes</p>
         @else
         @foreach ($eventsCategoryFive as $event)
-        <a href="{{ route('event.show', $event->id) }}" wire:navigate>
+        <a href="{{ route('event.show', $event->id) }}" aria-label="Plus d'infos sur l'événement {{ $event->name }}" wire:navigate>
             <div class="card backgroundyellow">
                 <img src="{{ asset('storage/./' . $event->images[0]->path ?? 'storage/./' . $event->images[0]->$image->path) }}" alt="Event à nié louper">
                 <div class="contentcard">
@@ -391,7 +391,7 @@
                         </svg>
                         <p>{{ $event->localisation->full_address ?? '-'}}</p>
                     </div>
-                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" wire:navigate>Réserver</a>
+                    <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-tertiaire" aria-label="Réservez sa place pour l'événement {{ $event->name }}" wire:navigate>Réserver</a>
                 </div>
             </div>
         </a>
@@ -475,7 +475,7 @@
         <h4>Une question ?</h4>
         <p>Nous y répondrons dans les plus brefs délais !</p>
     </div>
-    <a href="mailto:bringueur@quebringue.be" class="btn-contact">Contactez nous</a>
+    <a href="mailto:bringueur@quebringue.be" class="btn-contact" aria-label="Contactez-nous par mail">Contactez nous</a>
 </div>
 
 
