@@ -2,7 +2,7 @@
     <form role="search">
         <input type="search"
             class="search-bar"
-            placeholder="Rechercher un événement..."
+            placeholder="Recherche une bringue..."
             wire:model.live="search">
     </form>
     <div class="event-list">
