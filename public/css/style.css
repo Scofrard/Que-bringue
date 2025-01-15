@@ -21,7 +21,7 @@ body {
 h1 {
     font-family: "cubano", sans-serif;
     color: var(--white);
-    font-size: 4rem;
+    font-size: 2.5rem;
     line-height: 95%;
     margin-bottom: 1.5rem;
 }
@@ -210,8 +210,8 @@ button {
 
 /* --- CONTAINER --- */
 .container {
-    width: 100vw;
     max-width: 100%;
+    margin: 0 1rem;
 }
 
 @media screen and (min-width: 760px) {
@@ -228,8 +228,8 @@ button {
 
     .container {
         width: 990px;
+        margin: 0 auto;
     }
-
 }
 
 /* --- ACCESSIBILITY LINK VISIBLE --- */
@@ -247,10 +247,18 @@ button {
 /* --- HEADER --- */
 
 header {
+    width: 100vw;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 1rem auto;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logosvg {
@@ -265,6 +273,13 @@ header {
 
 @media screen and (min-width: 760px) {
 
+    header {
+        width: 90vw;
+        max-width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     .logosvg {
         width: 150px;
         max-width: 100%;
@@ -273,6 +288,14 @@ header {
 
     .btnreservation {
         margin-right: 0px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    header {
+        width: 990px;
+        margin: 0 auto;
     }
 }
 
@@ -358,7 +381,7 @@ header {
 /* --- MAIN EVENT --- */
 
 .container.main-event {
-    padding-bottom: 10rem
+    padding-bottom: 5rem
 }
 
 .main-event-content img {
@@ -943,9 +966,6 @@ a[data-tooltip-text]:hover::after {
 
 }
 
-/* --- MAPS --- */
-
-
 /* --- FOOTER --- */
 
 footer {
@@ -1151,7 +1171,7 @@ h1.form-title {
     background-color: var(--white);
     border: 3px solid var(--white);
     padding: 8px;
-    font-family: "cubano", sans-serif;
+    font-family: "Sora", sans-serif;
     font-weight: 500;
     font-size: 22px;
     transition: border-color 0.3s ease;
@@ -1312,7 +1332,7 @@ button:focus {
 .map-title {
     color: var(--white);
     font-size: 1.6rem;
-    margin: 7rem 0 2rem;
+    margin: 5rem 0 2rem;
 }
 
 .map-button {
@@ -1324,7 +1344,7 @@ button:focus {
 /* --- RESERVATIONS --- */
 
 .reservation-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 3rem 0 2rem 0;
 }
 
@@ -1374,8 +1394,18 @@ button:focus {
 
 .reservation-actions {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
+    padding: .5rem;
+}
+
+@media screen and (min-width: 620px) {
+
+    .reservation-actions {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
 }
 
 /* --- DETAILS RESERVATION --- */
@@ -1389,6 +1419,7 @@ button:focus {
 
 .details {
     display: flex;
+    flex-direction: column;
     gap: 5rem;
 }
 
@@ -1424,6 +1455,23 @@ button:focus {
 
 .details-content span {
     color: var(--yellow);
+}
+
+.details-reservation-actions {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 2rem;
+    padding: .5rem;
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 760px) {
+
+    .details {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 /* --- SEARCH BAR --- */

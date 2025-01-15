@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header class="container">
+    <header>
         <div class="logosvg">
             <a href="{{ route('event.index') }}" wire:navigate>
                 <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
@@ -26,9 +26,9 @@
             @if (Route::has('login'))
             <nav>
                 @auth
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
                     @csrf
-                    <button type="submit">Déconnexion</button>
+                    <button type="submit"><img src="{{ asset('assets/svg/log-out.svg') }}" alt="Déconnexion"></button>
                 </form>
                 <a href="{{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
                 @else

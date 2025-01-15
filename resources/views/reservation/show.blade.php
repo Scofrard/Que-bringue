@@ -8,7 +8,7 @@
         <a href="{{ route('reservation.index') }}" class="close-btn" wire:navigate>
             <img src="{{ asset('assets/svg/rollback.svg') }}" alt="Revenir en arrière">
         </a>
-        <h1 class="reservation-title">Détails de votre réservation</h1>
+        <h1 class="reservation-title">Détails de ta réservation</h1>
     </div>
     <div class="details">
         <div class="details-img">
@@ -29,7 +29,7 @@
             <p><span>Date de l'événement :</span> {{ \Carbon\Carbon::parse($reservation->event->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($reservation->event->date)->format('H:i')) }}
             </p>
             <p><span>Réservation effectuée le :</span> {{ \Carbon\Carbon::parse($reservation->created_at)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($reservation->event->created_at)->format('H:i')) }}</p>
-            <div class="reservation-actions">
+            <div class="details-reservation-actions">
                 <a href="{{ route('reservation.edit', $reservation->id) }}" wire:navigate>Modifier</a>
                 @livewire('reservation-destroy-form', ['reservationId' => $reservation->id])
             </div>
