@@ -22,9 +22,6 @@
                 <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
             </a>
         </div>
-        <div>
-            @livewire('event-search')
-        </div>
         <div class="btnreservation">
             @if (Route::has('login'))
             <nav>

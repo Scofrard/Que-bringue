@@ -8,10 +8,8 @@ use App\Models\Event;
 class EventSearch extends Component
 {
     public $search = '';
-
     public function render()
     {
-
         $results = [];
 
         if (strlen($this->search) >= 1) {

@@ -393,7 +393,7 @@ header {
         justify-content: space-between;
         align-items: center;
         gap: 30px;
-        padding: 5rem 0;
+        padding: 3rem 0;
     }
 
     .main-event p {
@@ -423,7 +423,7 @@ header {
 
     .main-event-content img {
         max-width: 100%;
-        width: 500px;
+        width: 600px;
         object-fit: cover;
     }
 
@@ -1428,16 +1428,26 @@ button:focus {
 
 /* --- SEARCH BAR --- */
 
-.search-bar {
+.search-event {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
     width: 100%;
+}
+
+.search-bar {
+    width: 250px;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
     font-size: 16px;
+    border: none;
+    border-bottom: 1px solid var(--white);
+    background-color: var(--black);
+    color: var(--white);
 }
 
 .event-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--white);
     padding: 10px 0;
 }
 
@@ -1448,7 +1458,6 @@ button:focus {
 
 .event-item p {
     font-size: 14px;
-    color: #555;
 }
 
 .event-item:last-child {

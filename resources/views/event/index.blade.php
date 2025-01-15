@@ -47,6 +47,11 @@
     </div>
 </div>
 
+<div class="search-event">
+    <img id="search-icon" src="{{ asset('assets/svg/search.svg') }}" alt="Rechercher">
+    @livewire('event-search')
+</div>
+
 <!--- MAIN EVENT --->
 
 @if ($eventBanger)
