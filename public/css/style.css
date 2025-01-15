@@ -1122,13 +1122,14 @@ footer {
     align-items: center;
     justify-content: center;
     position: relative;
+    margin: 3rem 0 5rem 0;
 }
 
 .auth-form {
     padding: 3rem 0;
 }
 
-h1.form-title {
+.form-title {
     color: var(--white);
     font-size: 1.8rem;
 }
