@@ -36,11 +36,6 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-
-
-
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEBQqSJKJORH9pB2cr1TWAxOnqUYX8hQ&libraries=places&callback=initialize" async defer> </script>
     <script type="text/javascript" src="/js/mapinput.js"></script>

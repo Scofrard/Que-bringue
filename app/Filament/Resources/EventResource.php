@@ -3,29 +3,28 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventResource\Pages;
-use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Tapp\FilamentGoogleAutocomplete\Forms\Components\GoogleAutocomplete;
 
 class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
+    protected static ?string $navigationLabel = 'Événements';
+
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';
 
-    public static function form(Form $form): Form
+    public static function form(Forms\Form $form): Forms\Form
     {
         return $form->schema([
             Forms\Components\TextInput::make('name')
                 ->label('Nom de l\'événement')
-                ->required()
-                ->maxLength(255),
+                ->required(),
 
             Forms\Components\Textarea::make('description')
                 ->label('Description')
@@ -49,11 +48,42 @@ class EventResource extends Resource
 
             Forms\Components\MultiSelect::make('categories')
                 ->label('Catégories')
-                ->relationship('categories', 'name'),
+                ->relationship('categories', 'name')
+                ->required(),
 
             Forms\Components\FileUpload::make('newImages')
                 ->label('Ajouter des images')
-                ->multiple(),
+                ->multiple()
+                ->image()
+                ->directory('event_images')
+                ->maxSize(1024)
+                ->required(),
+
+            GoogleAutocomplete::make('google_search')
+                ->label('Adresse complète')
+                ->countries(['BE'])
+                ->language('fr')
+                ->withFields([
+                    Forms\Components\TextInput::make('full_address')
+                        ->label('Adresse complète')
+                        ->extraInputAttributes([
+                            'data-google-field' => '{street_number} {route}, {sublocality_level_1}, {country}',
+                        ]),
+
+                    Forms\Components\TextInput::make('latitude')
+                        ->label('Latitude')
+                        ->extraInputAttributes([
+                            'data-google-field' => '{latitude}',
+                        ])
+                        ->disabled(),
+
+                    Forms\Components\TextInput::make('longitude')
+                        ->label('Longitude')
+                        ->extraInputAttributes([
+                            'data-google-field' => '{longitude}',
+                        ])
+                        ->disabled(),
+                ]),
         ]);
     }
 
@@ -105,13 +135,11 @@ class EventResource extends Resource
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')
-                    ->sortable()
-                    ->dateTime('d/m/Y'),
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Modifié le')
-                    ->sortable()
-                    ->dateTime('d/m/Y'),
+                    ->sortable(),
             ])
             ->filters([
                 //
