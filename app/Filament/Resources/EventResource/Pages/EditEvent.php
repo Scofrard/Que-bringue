@@ -52,14 +52,31 @@ class EditEvent extends EditRecord
     {
         $existingImages = $this->record->images->pluck('path')->toArray();
 
-        // Ajout des nouvelles images
+        // Supprimer les images qui ne sont plus présentes dans le formulaire
         if (!empty($this->data['newImages'])) {
+            $imagesToDelete = array_diff($existingImages, $this->data['newImages']);
+
+            foreach ($imagesToDelete as $imagePath) {
+                $image = $this->record->images()->where('path', $imagePath)->first();
+                if ($image) {
+                    $image->delete();
+                }
+            }
+            // Ajouter les nouvelles images
             foreach ($this->data['newImages'] as $file) {
-                // Ajouter l'image uniquement si n'existe pas
+                // Ajouter l'image uniquement si elle n'existe pas déjà dans les images existantes
                 if (!in_array($file, $existingImages)) {
                     $this->record->images()->create([
                         'path' => $file,
                     ]);
+                }
+            }
+        } else {
+            // Si aucune image n'est sélectionnée, on supprime toutes les images existantes
+            foreach ($existingImages as $imagePath) {
+                $image = $this->record->images()->where('path', $imagePath)->first();
+                if ($image) {
+                    $image->delete();
                 }
             }
         }
