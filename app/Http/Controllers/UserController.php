@@ -12,8 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('user.index', compact('users'));
+        //
     }
 
     /**
@@ -37,8 +36,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
-        return view('user.show', compact('user'));
+        //
     }
 
     /**

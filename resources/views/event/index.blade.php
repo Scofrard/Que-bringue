@@ -4,38 +4,10 @@
 
 @section('content')
 
-<!-- AFFICHER TOUS LES EVENEMENTS
-
-<a href="{{ route('event.create') }}" wire:navigate>Créer un nouvel événement</a>
+<!-- AFFICHER TOUS LES EVENEMENTS 
 @foreach ($events as $event)
-<ul>
-    <li>
-        @if (!$event->images->isEmpty())
-        <img src="{{ asset('storage/./' . $event->images[0]->path) }}" style="width: 150px; height: auto;">
-        @endif
-    </li>
-    <li>id : {{ $event->id }}</li>
-    <li>Nom : {{ $event->name }}</li>
-    <li>Description : {{ $event->description }}</li>
-    <li>Date de l'événement : {{ \Carbon\Carbon::parse($event->date)->translatedFormat('l j F Y') }}</li>
-    <li>Heure de l'événement : {{ str_replace(':', 'h', \Carbon\Carbon::parse($event->date)->format('H:i')) }}</li>
-    <li>Places disponibles : {{ $event->seats }}</li>
-    @foreach ($event->categories as $category)
-    <li>{{ $category->name }}</li>
-    @endforeach
-    <li>Adresse : {{ $event->localisation->full_address ?? '-'}}</li>
-</ul>
-<a href="{{ route('reservation.create', ['event_id' => $event->id]) }} " wire:navigate>Réserver</a><br>
-<a href="{{ route('event.localisation.edit', $event->id) }}" wire:navigate>Modifier la localisation</a><br>
-<a href="{{ route('event.show', $event->id) }} " wire:navigate>Plus d'infos sur l'événement</a><br>
-<a href="{{ route('event.edit', $event->id) }} " wire:navigate>Modifier l'événement</a><br>
-<form action="{{ route('event.destroy' , $event->id) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Supprimer l'événement</button>
-</form>
-@endforeach -->
-
+@endforeach
+-->
 
 <!--- BANDEAU --->
 

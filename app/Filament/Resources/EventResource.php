@@ -110,6 +110,7 @@ class EventResource extends Resource
 
                 Tables\Columns\ImageColumn::make('images.path')
                     ->label('Images')
+                    ->circular()
                     ->getStateUsing(function ($record) {
                         return optional($record->images->first())->path;
                     }),

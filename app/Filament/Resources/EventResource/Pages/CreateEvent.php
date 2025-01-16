@@ -33,5 +33,4 @@ class CreateEvent extends CreateRecord
             ]);
         }
     }
-    //protected static string $view = 'filament.pages.create-event';
 }

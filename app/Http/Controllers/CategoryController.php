@@ -12,9 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        //dd($categories);
-        return view('category.index', compact('categories'));
+        //
     }
 
     /**
@@ -22,8 +20,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $category = Category::find($id);
-        return view('category.show', compact('category'));
+        //
     }
 
 

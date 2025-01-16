@@ -57,7 +57,7 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $event = Event::with('localisation')->findOrFail($id); // Charger l'événement avec sa localisation
+        $event = Event::with('localisation')->findOrFail($id);
 
         // Utilisez les coordonnées de la localisation si disponibles
         $latitude = $event->localisation->latitude ?? null;
