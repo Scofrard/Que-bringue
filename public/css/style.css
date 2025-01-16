@@ -472,6 +472,12 @@ header nav {
         padding: 5rem 0 10rem 0;
     }
 
+    .main-event-content img {
+        width: 600px;
+        height: 500px;
+        object-fit: cover;
+    }
+
     .main-event p {
         font-size: 24px;
         line-height: 40px;

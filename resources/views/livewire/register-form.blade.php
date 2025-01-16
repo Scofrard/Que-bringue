@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="password">{{ __('Mot de passe') }}</label>
+                        <label for="password">{{ __('Mot de passe') }} <span>(Minimum 8 caractères et une majuscule)</span></label>
                         <input id="password" type="password" wire:model="password" placeholder="Mot de passe" required>
                         @error('password') <span style="color: #FF56C2;">{{ $message }}</span> @enderror
                     </div>
