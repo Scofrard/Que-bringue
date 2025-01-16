@@ -50,18 +50,22 @@ class EditEvent extends EditRecord
 
     protected function afterSave(): void
     {
+        $existingImages = $this->record->images->pluck('path')->toArray();
+
+        // Ajout des nouvelles images
         if (!empty($this->data['newImages'])) {
-            // Si de nouvelles images sont envoyées, on les associe à l'événement
             foreach ($this->data['newImages'] as $file) {
-                // Associer les images aux événements existants
-                $this->record->images()->create([
-                    'path' => $file,
-                ]);
+                // Ajouter l'image uniquement si n'existe pas
+                if (!in_array($file, $existingImages)) {
+                    $this->record->images()->create([
+                        'path' => $file,
+                    ]);
+                }
             }
         }
 
         if (!empty($this->data['full_address']) && isset($this->data['latitude']) && isset($this->data['longitude'])) {
-            // Vérifier si une localisation existe déjà pour cet événement
+            // Vérifier la localisation prééxistante
             $localisation = $this->record->localisation;
 
             // Si une localisation existe déjà, on la met à jour
