@@ -38,7 +38,7 @@ class ReservationResource extends Resource
 
                 Forms\Components\Select::make('user_id')
                     ->label('Utilisateur')
-                    ->relationship('user', 'name')
+                    ->relationship('user', 'email')
                     ->required(),
             ]);
     }
@@ -57,8 +57,23 @@ class ReservationResource extends Resource
                     ->sortable()
                     ->searchable(),
 
+                Tables\Columns\TextColumn::make('user.id')
+                    ->label('Prénom')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('user.firstname')
+                    ->label('Prénom')
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Utilisateur')
+                    ->label('Nom')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('user.email')
+                    ->label('Email')
                     ->sortable()
                     ->searchable(),
 
