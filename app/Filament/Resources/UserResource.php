@@ -12,6 +12,8 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
+    protected static ?string $navigationLabel = 'Utilisateurs';
+
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Forms\Form $form): Forms\Form
@@ -54,7 +56,15 @@ class UserResource extends Resource
             Tables\Columns\TextColumn::make('name')->label('Nom')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('email')->label('Email')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('phone')->label('Tél')->sortable()->searchable(),
-            Tables\Columns\TextColumn::make('is_admin')->label('Administrateur')->sortable()->searchable(),
+            Tables\Columns\BadgeColumn::make('is_admin')
+                ->label('Administrateur')
+                ->sortable()
+                ->searchable()
+                ->formatStateUsing(fn($state) => $state ? 'Oui' : 'Non') //formatStateUsing : Permet de transformer l'état brut (0 ou 1) en une valeur lisible (Oui ou Non
+                ->colors([
+                    'success' => fn($state) => $state,
+                    'danger' => fn($state) => !$state,
+                ]),
             Tables\Columns\TextColumn::make('created_at')->label('Créé le')->dateTime(),
             Tables\Columns\TextColumn::make('updated_at')->label('Mis à jour le')->dateTime(),
         ])
