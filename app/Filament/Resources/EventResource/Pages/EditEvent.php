@@ -18,18 +18,42 @@ class EditEvent extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        if (isset($data['date'])) {
-            $datetime = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data['date']);
-            $data['date_only'] = $datetime->format('Y-m-d');
-            $data['time_only'] = $datetime->format('H:i');
+        if (isset($data['date']) && !empty($data['date'])) {
+            try {
+                // Utilisez le format complet 'Y-m-d H:i:s' pour gérer la date et l'heure
+                $datetime = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data['date']);
+                $data['date_only'] = $datetime->format('Y-m-d');
+                $data['time_only'] = $datetime->format('H:i');
+            } catch (\Exception $e) {
+                // Si mauvais format de date, vider les champs
+                $data['date_only'] = null;
+                $data['time_only'] = null;
+            }
+        } else {
+            $data['date_only'] = null;
+            $data['time_only'] = null;
         }
+
+        // Charger les images de l'event
+        $data['newImages'] = $this->record->images->pluck('path')->toArray();
+
+        // Charger la localisation de l'event
+        if ($this->record->localisation) {
+            $data['full_address'] = $this->record->localisation->full_address;
+            $data['latitude'] = $this->record->localisation->latitude;
+            $data['longitude'] = $this->record->localisation->longitude;
+        }
+
         return $data;
     }
+
 
     protected function afterSave(): void
     {
         if (!empty($this->data['newImages'])) {
+            // Si de nouvelles images sont envoyées, on les associe à l'événement
             foreach ($this->data['newImages'] as $file) {
+                // Associer les images aux événements existants
                 $this->record->images()->create([
                     'path' => $file,
                 ]);

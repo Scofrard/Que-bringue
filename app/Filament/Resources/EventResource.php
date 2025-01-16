@@ -57,7 +57,20 @@ class EventResource extends Resource
                 ->image()
                 ->directory('event_images')
                 ->maxSize(1024)
-                ->required(),
+                ->required()
+                ->afterStateUpdated(function ($state, callable $set) {
+                    // Ici tu peux gérer les images déjà présentes si nécessaire
+                    if ($state) {
+                        // Le champ 'newImages' contiendra les images existantes dans un tableau
+                        $set('newImages', $state);
+                    }
+                })
+                ->afterStateHydrated(function ($state, callable $set) {
+                    // Hydrate avec les images existantes lors de la récupération des données
+                    if ($state) {
+                        $set('newImages', $state);  // Assurez-vous que l'état soit bien défini pour l'édition
+                    }
+                }),
 
             GoogleAutocomplete::make('google_search')
                 ->label('Adresse complète')
