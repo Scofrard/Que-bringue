@@ -9,14 +9,16 @@
     @endpush
     <x-authentication-card>
         <x-slot name="logo">
-            <a href="{{ route('event.index') }}" wire:navigate>
-                <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
-            </a>
+            <div class="logosvg">
+                <a href="{{ route('event.index') }}" wire:navigate>
+                    <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
+                </a>
+            </div>
         </x-slot>
         <div id="reset-password-form">
             <div class="form">
                 <div class="auth-form">
-                    <h1 class="form-title">Réinitialisation du mot de passe</h1>
+                    <h1 class="form-title">Reset ton mot de passe</h1>
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
                         <!-- Token requis pour le reset -->
@@ -32,7 +34,7 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="password">{{ __('Nouveau mot de passe') }}</label>
+                                <label for="password">{{ __('Nouveau mot de passe') }} <span>(Minimum 8 caractères et une majuscule)</span></label>
                                 <input id="password" type="password" name="password" placeholder="Mot de passe" required>
                                 @error('password') <span style="color: #FF56C2;">{{ $message }}</span> @enderror
                             </div>
@@ -47,7 +49,7 @@
                         </div>
 
                         <button type="submit" class="btn-primary reservation">
-                            {{ __('Réinitialiser le mot de passe') }}
+                            {{ __('Réinitialiser') }}
                         </button>
 
                         @if (session()->has('message'))
