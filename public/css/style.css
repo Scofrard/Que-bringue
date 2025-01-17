@@ -71,6 +71,11 @@ p {
     line-height: 24px;
 }
 
+.title-white {
+    padding: 1rem 0;
+    color: var(--white);
+}
+
 /* --- BUTTON --- */
 
 button {
@@ -276,10 +281,10 @@ header nav {
 }
 
 .logoresetpasswordsvg {
-    width: 120px;
+    width: 180px;
     max-width: 100%;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 
 @media screen and (min-width: 760px) {
@@ -399,7 +404,7 @@ header nav {
 }
 
 .main-event-infos {
-    margin: 2rem 20px;
+    margin: 2rem 0;
     font-size: 18px;
 }
 
@@ -414,6 +419,10 @@ header nav {
 
 .main-event a {
     margin-top: 1rem;
+}
+
+.descripionevent img {
+    display: none;
 }
 
 @media screen and (min-width: 760px) {
@@ -448,6 +457,16 @@ header nav {
         margin: 0 auto;
     }
 
+    .descripionevent img {
+        display: block;
+    }
+
+    .descripionevent {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        gap: 5rem;
+    }
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -475,7 +494,6 @@ header nav {
         max-width: 990px;
         display: flex;
         justify-content: center;
-        gap: 7rem;
         padding: 5rem 0 10rem 0;
     }
 

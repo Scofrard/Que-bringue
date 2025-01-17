@@ -39,7 +39,13 @@
             <a href="{{ route('reservation.create', ['event_id' => $event->id]) }}" class="btn-secondary" wire:navigate>Réserver</a>
         </div>
     </div>
-    <p>{{ $event->description }}</p>
+    <div class="descripionevent">
+        <div>
+            <h2 class="title-white">Un p'tit amuse bouche</h2>
+            <p>{{ $event->description }}</p>
+        </div>
+        <img src="{{ asset('assets/svg/star-blue-yellow.svg') }}" alt="Etoiles bleu et jaune">
+    </div>
     <div class="galery">
         @foreach ($event->images->skip(1) as $image)
         <img src="{{ asset('storage/' . $image->path) }}" alt="Image de l'événement">
