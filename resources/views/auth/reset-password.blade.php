@@ -1,13 +1,13 @@
 <x-guest-layout>
+    @push('styles')
+    <link rel="icon" href="{{ asset('assets/svg/faviconquebringue.svg') }}" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=sora:400,500,600&display=swap?v=2" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/vmj5cbu.css">
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @endpush
     <x-authentication-card>
-        <x-slot name="style">
-            <link rel="icon" href="{{ asset('assets/svg/faviconquebringue.svg') }}" type="image/x-icon" />
-            <link rel="preconnect" href="https://fonts.bunny.net">
-            <link href="https://fonts.bunny.net/css?family=sora:400,500,600&display=swap?v=2" rel="stylesheet">
-            <link rel="stylesheet" href="https://use.typekit.net/vmj5cbu.css">
-            <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        </x-slot>
         <x-slot name="logo">
             <a href="{{ route('event.index') }}" wire:navigate>
                 <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
