@@ -76,6 +76,13 @@ p {
     color: var(--white);
 }
 
+.followus {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
 /* --- BUTTON --- */
 
 button {
@@ -170,6 +177,10 @@ button {
         margin: 7rem auto 3rem auto;
         font-size: 1.7rem;
         line-height: 36px;
+    }
+
+    .followus {
+        text-align: left;
     }
 
     .btn-primary {

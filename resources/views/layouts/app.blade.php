@@ -60,7 +60,7 @@
         <div class="footercolumns">
             <div class="footercolumn one">
                 <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
-                <h5>Follow nous</h5>
+                <h4 class="followus">Follow nous</h4>
                 <ul>
                     <li>
                         <a data-social="Facebook" style="--accent-color: #0866FF" href="https://www.facebook.com/"
