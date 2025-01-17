@@ -12,7 +12,7 @@
             <div class="form">
                 <div class="auth-form">
                     <x-slot name="logo">
-                        <div class="logosvg">
+                        <div class="logoresetpasswordsvg">
                             <a href="{{ route('event.index') }}" wire:navigate>
                                 <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
                             </a>
