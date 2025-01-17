@@ -8,6 +8,11 @@
             <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         </x-slot>
+        <x-slot name="logo">
+            <a href="{{ route('event.index') }}" wire:navigate>
+                <img src="{{ asset('assets/svg/logoquebringue.svg') }}" alt="Logo Québringue">
+            </a>
+        </x-slot>
         <div id="reset-password-form">
             <div class="form">
                 <div class="auth-form">
