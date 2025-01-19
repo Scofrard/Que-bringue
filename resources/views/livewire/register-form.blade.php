@@ -56,9 +56,16 @@
                 <button type="submit" class="btn-primary reservation">
                     {{ __('S\'inscrire') }}
                 </button>
+                @if ($redirectlogin)
+                <div style="margin-top: 2rem;">
+                    <a href="{{ route('login') }}" wire:navigate class="btn-primary">
+                        {{ __('Se connecter') }}
+                    </a>
+                </div>
+                @endif
                 @if (session()->has('message'))
                 <div class="form-group">
-                    <p style="color: #FF56C2;">{{ session('message') }}</p>
+                    <p style="color: #FFEC00;">{{ session('message') }}</p>
                 </div>
                 @endif
                 <div class="form-group">

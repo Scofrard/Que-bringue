@@ -33,10 +33,7 @@
             @if (Route::has('login'))
             <nav>
                 @auth
-                <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
-                    @csrf
-                    <button type="submit" class="logout"><img src="{{ asset('assets/svg/log-out.svg') }}" alt="Déconnexion"></button>
-                </form>
+                @livewire('logout-form')
                 <a href="{{ route('reservation.index') }}" class="btn-primary" wire:navigate>Tes réservations</a>
                 @else
                 <a href="{{ route('login') }}" wire:navigate>Connexion</a>
@@ -47,6 +44,7 @@
                 @endauth
             </nav>
             @endif
+
         </div>
     </header>
 
@@ -132,6 +130,16 @@
     </footer>
     @livewireScripts
     @stack('scripts')
+    <script>
+        document.addEventListener('livewire:load', function() {
+            // Écouter l'événement 'redirect'
+            window.livewire.on('redirect', (event) => {
+                // Redirection vers l'URL envoyée dans l'événement
+                window.location.href = event.url;
+            });
+        });
+    </script>
+
 </body>
 
 </html>

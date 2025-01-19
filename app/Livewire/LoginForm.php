@@ -11,6 +11,7 @@ class LoginForm extends Component
     public $email;
     public $password;
     public $remember = false;
+    public $redirect = false;
 
     protected $messages = [
         'email.required' => 'Le champ email est obligatoire.',
@@ -28,6 +29,7 @@ class LoginForm extends Component
         if (Auth::attempt($credentials, $this->remember)) {
             session()->regenerate();
             session()->flash('success', 'Connexion réussie !');
+            $this->redirect = true;
             return;
         }
 
