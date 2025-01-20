@@ -493,6 +493,7 @@
 @push('scripts')
 <script type="text/javascript" src="/js/slideevent.js"></script>
 <script>
+    // Initialize Google Map
     function initMap() {
         // Position par défaut
         var defaultCenter = {
@@ -500,39 +501,25 @@
             lng: 3.3965018621070597
         };
 
-        // Crée la carte
+        // Crée la carte avec un centre et un zoom
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: defaultCenter
         });
 
-        // Récupérer les données des événements (passées depuis le contrôleur)
-        var locations = @json($locations);
+        // Ajout des marqueurs
+        var locations = @json($locations); // Données passées depuis le contrôleur
 
         locations.forEach(function(location) {
-            // Créer une icône personnalisée avec l'image de l'événement
-            var imageUrl = location.main_image ? '/storage/' + location.main_image : '/storage/default_marker_image.png'; // Utiliser une image par défaut si aucune image n'est fournie
-
-            // Crée un marqueur avec une icône personnalisée
             var marker = new google.maps.Marker({
-                position: {
-                    lat: location.lat,
-                    lng: location.lng
-                },
+                position: location,
                 map: map,
-                title: 'Événement ici',
-                icon: {
-                    url: imageUrl, // URL de l'image
-                    size: new google.maps.Size(40, 40), // Taille de l'image
-                    scaledSize: new google.maps.Size(40, 40), // Taille de l'image à afficher
-                    origin: new google.maps.Point(0, 0), // Point de départ de l'image
-                    anchor: new google.maps.Point(20, 20) // Centrer l'image dans le cercle
-                }
+                title: 'Événement ici'
             });
         });
     }
 
-    // Fonction pour charger Google Maps API
+    // Chargement de l'API Google Maps avec la clé API
     function loadGoogleMaps() {
         var script = document.createElement('script');
         script.src = "https://maps.googleapis.com/maps/api/js?key={{ config('services.api.key') }}&callback=initMap";
@@ -541,7 +528,7 @@
         document.body.appendChild(script);
     }
 
-    // Charger la carte une fois la page prête
+    // Chargement de la carte lorsque la page est prête
     document.addEventListener("DOMContentLoaded", loadGoogleMaps);
 </script>
 @endpush
