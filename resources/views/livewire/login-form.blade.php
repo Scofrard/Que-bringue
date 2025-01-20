@@ -27,13 +27,6 @@
                 <button type="submit" class="btn-primary reservation">
                     {{ __('Se connecter') }}
                 </button>
-                @if ($redirect || Auth::check())
-                <div style="margin-top: 2rem;">
-                    <a href="{{ route('event.index') }}" wire:navigate class="btn-primary">
-                        {{ __('Voir les événements') }}
-                    </a>
-                </div>
-                @endif
                 @if (session()->has('success'))
                 <div class="form-group">
                     <p style="color:#FFEC00">{{ session('success') }}</p>

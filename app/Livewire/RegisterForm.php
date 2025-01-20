@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class RegisterForm extends Component
 {
-    public $name, $firstname, $phone, $email, $password, $password_confirmation, $redirectlogin = false;
+    public $name, $firstname, $phone, $email, $password, $password_confirmation;
 
     protected $rules = [
         'name' => 'required|string|min:3|max:255',
@@ -57,10 +57,8 @@ class RegisterForm extends Component
             'password' => Hash::make($this->password),
         ]);
 
-        session()->flash('message', 'Compte créé avec succès !');
-
-        $this->redirectlogin = true;
-        return;
+        //session()->flash('message', 'Compte créé avec succès !');
+        return $this->redirect('/login', navigate: true);
     }
 
     public function render()

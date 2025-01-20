@@ -22,6 +22,7 @@ class EventController extends Controller
         $events = Event::all();
         $categories = Category::all();
         $localisations = Localisation::all();
+        $images = Event::with('images')->get();
 
         $eventBanger = Event::whereHas('categories', function ($query) {
             $query->where('categories.name', 'Banger');
@@ -47,9 +48,19 @@ class EventController extends Controller
             $query->where('categories.id', '5');
         })->get();
 
+        $events = Event::with('localisation')->get();
 
+        // Récupérer les latitudes et longitudes de tous les événements dans un tableau
+        $locations = $events->map(function ($event) {
+            return [
+                'lat' => $event->localisation->latitude,
+                'lng' => $event->localisation->longitude,
+                'event_id' => $event->id,
+                'main_image' => $event->images->first()->path ?? null
+            ];
+        });
 
-        return view('event.index', compact('events', 'eventBanger', 'eventsCategoryOne', 'eventsCategoryTwo', 'eventsCategoryThree', 'eventsCategoryFour', 'eventsCategoryFive'));
+        return view('event.index', compact('events', 'eventBanger', 'eventsCategoryOne', 'eventsCategoryTwo', 'eventsCategoryThree', 'eventsCategoryFour', 'eventsCategoryFive', 'locations', 'images'));
     }
 
     /**

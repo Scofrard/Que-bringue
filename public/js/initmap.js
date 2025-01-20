@@ -1,7 +1,7 @@
-let map, activeInfoWindow, markers = [];
+/*let map, activeInfoWindow, markers = [];*/
 
 /* ----------------------------- Initialize Map ----------------------------- */
-function initMap() {
+/*function initMap() {
     const centerCoordinates = {
         lat: {{ $latitude }
 },
@@ -18,10 +18,10 @@ map.addListener("click", function (event) {
     mapClicked(event);
 });
 initMarkers();
-    }
+    }*/
 
 /* --------------------------- Initialize Markers --------------------------- */
-function initMarkers() {
+/*function initMarkers() {
     const initialMarkers = @json($initialMarkers);
 
     for (let index = 0; index < initialMarkers.length; index++) {
@@ -54,24 +54,24 @@ function initMarkers() {
             markerDragEnd(event, index);
         });
     }
-}
+}*/
 
 /* ------------------------- Handle Map Click Event ------------------------- */
-function mapClicked(event) {
+/*function mapClicked(event) {
     console.log(map);
     console.log(event.latLng.lat(), event.latLng.lng());
-}
+}*/
 
 /* ------------------------ Handle Marker Click Event ----------------------- */
-function markerClicked(marker, index) {
+/*function markerClicked(marker, index) {
     console.log(map);
     console.log(marker.position.lat());
     console.log(marker.position.lng());
-}
+}*/
 
 /* ----------------------- Handle Marker DragEnd Event ---------------------- */
-function markerDragEnd(event, index) {
+/*function markerDragEnd(event, index) {
     console.log(map);
     console.log(event.latLng.lat());
     console.log(event.latLng.lng());
-}
+}*/

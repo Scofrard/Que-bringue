@@ -13,8 +13,8 @@ class LogoutForm extends Component
         Auth::logout();
         session()->invalidate();
         session()->regenerateToken();
-        session()->flash('message', 'Déconnecté');
-        return;
+        //session()->flash('message', 'Déconnecté');
+        return $this->redirect('/', navigate: true);
     }
 
     public function render()

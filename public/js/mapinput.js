@@ -1,4 +1,4 @@
-function initialize() {
+/*function initialize() {
 
     $('form').on('keyup keypress', function (e) {
         var keyCode = e.keyCode || e.which;
@@ -81,3 +81,4 @@ function setLocationCoordinates(key, lat, lng, place) {
     longitudeField.value = lng;
     Livewire.dispatch('updateCoordinates', { address: place.formatted_address, latitude: lat, longitude: lng });
 }
+*/

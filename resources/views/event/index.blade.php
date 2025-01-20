@@ -479,14 +479,69 @@
 <!-- MAPS -->
 
 <h4>Ravise ichi quelques bringues qui vont te plaire</h4>
-<iframe title="Maps"
-    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d33831.58784290464!2d3.3965018621070597!3d50.60769606201858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sbe!4v1724096912537!5m2!1sfr!2sbe"
-    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+<div class="map">
+    <div id="map"></div>
+</div>
+<div id="eventImage" style="position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
+    <a id="eventLink" href="#" target="_blank">
+        <img id="eventImageContent" src="" alt="Image de l'événement" style="width: 200px; height: auto; border-radius: 8px;">
+    </a>
+</div>
 
 @endsection
 
 @push('scripts')
 <script type="text/javascript" src="/js/slideevent.js"></script>
+<script>
+    function initMap() {
+        // Position par défaut
+        var defaultCenter = {
+            lat: 50.60769606201858,
+            lng: 3.3965018621070597
+        };
+
+        // Crée la carte
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: defaultCenter
+        });
+
+        // Récupérer les données des événements (passées depuis le contrôleur)
+        var locations = @json($locations);
+
+        locations.forEach(function(location) {
+            // Créer une icône personnalisée avec l'image de l'événement
+            var imageUrl = location.main_image ? '/storage/' + location.main_image : '/storage/default_marker_image.png'; // Utiliser une image par défaut si aucune image n'est fournie
+
+            // Crée un marqueur avec une icône personnalisée
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: location.lat,
+                    lng: location.lng
+                },
+                map: map,
+                title: 'Événement ici',
+                icon: {
+                    url: imageUrl, // URL de l'image
+                    size: new google.maps.Size(40, 40), // Taille de l'image
+                    scaledSize: new google.maps.Size(40, 40), // Taille de l'image à afficher
+                    origin: new google.maps.Point(0, 0), // Point de départ de l'image
+                    anchor: new google.maps.Point(20, 20) // Centrer l'image dans le cercle
+                }
+            });
+        });
+    }
+
+    // Fonction pour charger Google Maps API
+    function loadGoogleMaps() {
+        var script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key={{ config('services.api.key') }}&callback=initMap";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+    }
+
+    // Charger la carte une fois la page prête
+    document.addEventListener("DOMContentLoaded", loadGoogleMaps);
+</script>
 @endpush
