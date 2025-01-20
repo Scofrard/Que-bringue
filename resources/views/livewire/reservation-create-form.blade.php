@@ -26,6 +26,9 @@
                         </div>
                         <button type="submit" class="btn-primary reservation">RÉSERVER</button>
                     </form>
+                    @if (session()->has('error'))
+                    <p class="error">{{ session('error') }}</p>
+                    @endif
                     @if (session()->has('success'))
                     <p class="success">{{ session('success') }}</p>
                     @endif

@@ -50,6 +50,21 @@ class ReservationEditForm extends Component
             abort(403);
         }
 
+        $event = Event::findOrFail($this->event_id);
+
+        // Calcul de la différence entre les places réservées
+        $difference = $validatedData['seats'] - $reservation->seats;
+
+        // Vérification de la disponibilité si l'utilisateur augmente ses places
+        if ($difference > 0 && $event->seats < $difference) {
+            session()->flash('error', 'Pas assez de places disponibles');
+            return;
+        }
+
+        // Mise à jour des places disponibles pour l'événement
+        $event->seats -= $difference;
+        $event->save();
+
         $reservation->update([
             'seats' => $validatedData['seats'],
         ]);

@@ -42,19 +42,23 @@ class ReservationCreateForm extends Component
             'seats' => 'required|integer|min:1',
         ]);
 
-        // $validatedData['event_id'] = $id;
-        // $validatedData['user_id'] = Auth::id();
+        $event = Event::findOrFail($id);
+
+        if ($this->seats > $event->seats) {
+            session()->flash('error', 'Le nombre de places disponibles est insuffisant !');
+            return;
+        }
 
         Auth()->user()->reservations()->create([
             'seats' => $validatedData['seats'],
             'event_id' => $id
         ]);
 
-
-        // Reservation::create($validatedData);
+        $event->seats -= $this->seats;
+        $event->save();
 
         $this->reset();
-        // return Redirect::route('')
+
         session()->flash('success', 'Réservation créée avec succès !');
     }
 

@@ -11,14 +11,18 @@ class ReservationDestroyForm extends Component
 
     public function destroy()
     {
-        $reservationId = Reservation::findOrFail($this->reservationId);
-        $reservationId->delete();
+        $reservation = Reservation::findOrFail($this->reservationId);
+
+        // Récupération de l'événement lié
+        $event = $reservation->event;
+
+        // Mise à jour des places disponibles
+        $event->seats += $reservation->seats;
+        $event->save();
+
+        // Suppression de la réservation
+        $reservation->delete();
 
         session()->flash('success', 'La réservation a été supprimée');
-    }
-
-    public function render()
-    {
-        return view('livewire.reservation-destroy-form');
     }
 }
