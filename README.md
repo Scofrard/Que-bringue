@@ -79,4 +79,10 @@ Bien que Herd soit fortement recommandé, vous pouvez également utiliser XAMPP 
 Herd : Installez Herd et suivez les instructions pour créer votre environnement local avec PHP 8.2. Il est conçu pour être facile à configurer avec des projets Laravel.
 XAMPP/MAMP : Si vous utilisez XAMPP ou MAMP, assurez-vous d'installer la version de PHP 8.2. Vous pouvez configurer ces outils pour utiliser la version PHP requise et démarrer les services MySQL.
 
+### 11. Recommandations
+Pour accéder au backoffice, il est nécessaire de posséder un compte amdinistrateur. Voici les accès du compte admin :
+URL de connexion : https://quebringue.be/bringeur2000/login
+Adresse email : bringeur@quebringue.be
+Mot de passe : h6rbR6FomvxuAKR
+
 
