@@ -10,8 +10,6 @@ use App\Models\Image;
 //use Illuminate\Container\Attributes\Storage;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class EventController extends Controller
 {
     /**

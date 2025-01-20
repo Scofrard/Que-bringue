@@ -493,7 +493,6 @@
 @push('scripts')
 <script type="text/javascript" src="/js/slideevent.js"></script>
 <script>
-    // Initialize Google Map
     function initMap() {
         // Position par défaut
         var defaultCenter = {
@@ -501,31 +500,49 @@
             lng: 3.3965018621070597
         };
 
-        // Crée la carte avec un centre et un zoom
+        // Crée la carte
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
             center: defaultCenter
         });
 
-        // Ajout des marqueurs
-        var locations = @json($locations); // Données passées depuis le contrôleur
+        // Récupérer les données des événements (passées depuis le contrôleur)
+        var locations = @json($locations);
 
         locations.forEach(function(location) {
-            if (location.lat && location.lng) {
-                var marker = new google.maps.Marker({
-                    position: {
-                        lat: parseFloat(location.lat),
-                        lng: parseFloat(location.lng)
-                    },
-                    map: map,
-                    title: 'Événement ici'
-                });
-            }
-        });
+            // Créer une icône personnalisée avec l'image de l'événement
+            var imageUrl = location.main_image ? '/storage/' + location.main_image : '/storage/default_marker_image.png'; // Utiliser une image par défaut si aucune image n'est fournie
 
+            // Crée un marqueur avec une icône personnalisée
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(location.lat),
+                    lng: parseFloat(location.lng)
+                },
+                map: map,
+                title: 'Événement ici',
+                icon: {
+                    url: imageUrl, // URL de l'image
+                    size: new google.maps.Size(40, 40), // Taille de l'image
+                    scaledSize: new google.maps.Size(40, 40), // Taille de l'image à afficher
+                    origin: new google.maps.Point(0, 0), // Point de départ de l'image
+                    anchor: new google.maps.Point(20, 20) // Centrer l'image dans le cercle
+                }
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                // Mettre à jour l'image de l'événement et le lien
+                document.getElementById('eventImage').style.display = 'block'; // Affiche la div avec l'image
+                document.getElementById('eventLink').href = '/event/' + location.event_id; // Lien vers la page de l'événement
+                document.getElementById('eventImageContent').src = location.main_image ? '/storage/' + location.main_image : '/storage/default_marker_image.png'; // Image de l'événement
+
+                // Utiliser JavaScript pour rediriger vers la page de l'événement
+                window.location.href = '/event/' + location.event_id; // Rediriger vers l'événement sans recharger la page
+            });
+        });
     }
 
-    // Chargement de l'API Google Maps avec la clé API
+    // Fonction pour charger Google Maps API
     function loadGoogleMaps() {
         var script = document.createElement('script');
         script.src = "https://maps.googleapis.com/maps/api/js?key={{ config('services.api.key') }}&callback=initMap";
@@ -534,7 +551,7 @@
         document.body.appendChild(script);
     }
 
-    // Chargement de la carte lorsque la page est prête
+    // Charger la carte une fois la page prête
     document.addEventListener("DOMContentLoaded", loadGoogleMaps);
 </script>
 @endpush
