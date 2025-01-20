@@ -511,12 +511,18 @@
         var locations = @json($locations); // Données passées depuis le contrôleur
 
         locations.forEach(function(location) {
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                title: 'Événement ici'
-            });
+            if (location.lat && location.lng) {
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: parseFloat(location.lat),
+                        lng: parseFloat(location.lng)
+                    },
+                    map: map,
+                    title: 'Événement ici'
+                });
+            }
         });
+
     }
 
     // Chargement de l'API Google Maps avec la clé API
