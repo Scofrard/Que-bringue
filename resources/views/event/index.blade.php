@@ -481,12 +481,6 @@
 <div class="map">
     <div id="map"></div>
 </div>
-<div id="eventImage" style="position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
-    <!-- Utilisation de wire:navigate pour la navigation dynamique -->
-    <a id="eventLink" href="#" target="_blank" wire:navigate>
-        <img id="eventImageContent" src="" alt="Image de l'événement" style="width: 200px; height: auto; border-radius: 8px;">
-    </a>
-</div>
 
 @endsection
 
@@ -531,12 +525,8 @@
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-                console.log('Marker clicked');
                 // Mettre à jour l'image de l'événement et le lien
                 document.getElementById('eventImage').style.display = 'block'; // Affiche la div avec l'image
-                document.getElementById('eventLink').href = '/event/' + location.event_id; // Lien vers la page de l'événement
-                document.getElementById('eventImageContent').src = location.main_image ? '/storage/' + location.main_image : '/storage/default_marker_image.png'; // Image de l'événement
-                console.log('Updated Link:', document.getElementById('eventLink').href);
             });
         });
     }
