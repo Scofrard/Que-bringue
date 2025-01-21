@@ -59,7 +59,7 @@
             });
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEBQqSJKJORH9pB2cr1TWAxOnqUYX8hQ&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.api.key') }}&callback=initMap" async defer></script>
     @else
     <p>Aucune information concernant le lieu de l'événement</p>
     @endif
