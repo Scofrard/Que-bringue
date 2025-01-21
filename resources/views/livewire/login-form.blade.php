@@ -3,6 +3,7 @@
         <div class="auth-form">
             <h1 class="form-title">Connexion</h1>
             <form wire:submit.prevent="login">
+                <!-- token permettent de sécuriser la relation entre l'application web, navigateur et utilisateurs -->
                 @csrf
                 <div class="form-row">
                     <div class="form-group">
