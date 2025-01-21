@@ -543,3 +543,4 @@
     // Charger la carte une fois la page prête
     document.addEventListener("DOMContentLoaded", loadGoogleMaps);
 </script>
+@endpush
