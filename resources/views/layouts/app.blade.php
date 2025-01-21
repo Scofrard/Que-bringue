@@ -130,16 +130,6 @@
     </footer>
     @livewireScripts
     @stack('scripts')
-    <script>
-        document.addEventListener('livewire:load', function() {
-            // Écouter l'événement 'redirect'
-            window.livewire.on('redirect', (event) => {
-                // Redirection vers l'URL envoyée dans l'événement
-                window.location.href = event.url;
-            });
-        });
-    </script>
-
 </body>
 
 </html>
