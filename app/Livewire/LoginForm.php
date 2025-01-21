@@ -25,8 +25,9 @@ class LoginForm extends Component
             'password' => ['required'],
         ]);
 
+        //Authentifier l'utlisateur
         if (Auth::attempt($credentials, $this->remember)) {
-            session()->regenerate();
+            session()->regenerate(); //Regénère l'ID de session pour éviter les attaques de fixation de session.
             //session()->flash('success', 'Connexion réussie !');
             return $this->redirect('/', navigate: true);
         }

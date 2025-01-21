@@ -15,10 +15,11 @@ class ReservationCreateForm extends Component
 
     public function mount(int $event_id)
     {
+        //Vérifier que l'utlisateur est connecté
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        $this->event_id = $event_id ?? Session::get('event_id');
+        $this->event_id = $event_id ?? Session::get('event_id'); // Initialise l'ID de l'event
     }
 
 
@@ -36,12 +37,14 @@ class ReservationCreateForm extends Component
 
     public function submit(int $id)
     {
-        Session::put('event_id', $id);
+        Session::put('event_id', $id); // Stocke l'ID de l'événement dans la session
 
+        // Valide les données soumises
         $validatedData = $this->validate([
             'seats' => 'required|integer|min:1',
         ]);
 
+        //Trouver l'event via l'ID
         $event = Event::findOrFail($id);
 
         if ($this->seats > $event->seats) {
@@ -49,12 +52,13 @@ class ReservationCreateForm extends Component
             return;
         }
 
+        //Enregistrer la réservation dans la DB
         Auth()->user()->reservations()->create([
             'seats' => $validatedData['seats'],
             'event_id' => $id
         ]);
 
-        $event->seats -= $this->seats;
+        $event->seats -= $this->seats; // Diminue le nombre de places disponibles pour l'événement
         $event->save();
 
         $this->reset();

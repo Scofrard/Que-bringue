@@ -29,7 +29,6 @@ class ResetPasswordForm extends Component
         'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
     ];
 
-    // Méthode qui sera appelée lors de la soumission du formulaire
     public function submit()
     {
         $this->validate();
@@ -55,12 +54,11 @@ class ResetPasswordForm extends Component
             session()->flash('message', 'Votre mot de passe a été réinitialisé avec succès.');
             return redirect()->route('login');
         } else {
-            // Si un problème survient, afficher l'erreur
+            // Afficher l'erreur
             $this->addError('email', __($status));
         }
     }
 
-    // La méthode render permet de rendre la vue associée à ce composant
     public function render()
     {
         return view('livewire.reset-password-form');

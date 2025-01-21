@@ -13,7 +13,7 @@ class ReservationDestroyForm extends Component
     {
         $reservation = Reservation::findOrFail($this->reservationId);
 
-        // Récupération de l'événement lié
+        // Récupération de l'event lié
         $event = $reservation->event;
 
         // Mise à jour des places disponibles
