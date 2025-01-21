@@ -43,7 +43,7 @@
                         d="M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7v2H5a2 2 0 0 0-2 2zm16 14H5V8h14z">
                     </path>
                 </svg>
-                <p>{{ \Carbon\Carbon::parse($event->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($event->date)->format('H:i')) }}</p>
+                <p>{{ \Carbon\Carbon::parse($eventBanger->date)->translatedFormat('j F Y') }} à {{ str_replace(':', 'h', \Carbon\Carbon::parse($eventBanger->date)->format('H:i')) }}</p>
             </div>
             <div class="iconevent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 35 35"
@@ -450,7 +450,6 @@
     <a href="mailto:bringueur@quebringue.be" class="btn-contact" aria-label="Contactez-nous par mail">Contactez nous</a>
 </div>
 
-
 <!-- VILLES DISPO -->
 
 <h4>Bientôt dispo dans les + grandes villes de Belgique</h4>
@@ -483,7 +482,6 @@
     <div id="map"></div>
 </div>
 <div id="eventImage" style="position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: none;">
-    <!-- Utilisation de wire:navigate pour la navigation dynamique -->
     <a id="eventLink" href="#" target="_blank" wire:navigate>
         <img id="eventImageContent" src="" alt="Image de l'événement" style="width: 200px; height: auto; border-radius: 8px;">
     </a>
@@ -523,8 +521,8 @@
                 map: map,
                 title: 'Événement ici',
                 icon: {
-                    url: imageUrl, // URL de l'image
-                    size: new google.maps.Size(40, 40), // Taille de l'image
+                    url: imageUrl,
+                    size: new google.maps.Size(40, 40),
                     scaledSize: new google.maps.Size(40, 40), // Taille de l'image à afficher
                     origin: new google.maps.Point(0, 0), // Point de départ de l'image
                     anchor: new google.maps.Point(20, 20) // Centrer l'image dans le cercle
@@ -532,12 +530,13 @@
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-                console.log('Marker clicked');
+                console.log('Event Name:', location.event_name);
                 // Mettre à jour l'image de l'événement et le lien
                 document.getElementById('eventImage').style.display = 'block'; // Affiche la div avec l'image
                 document.getElementById('eventLink').href = '/event/' + location.event_id; // Lien vers la page de l'événement
                 document.getElementById('eventImageContent').src = location.main_image ? '/storage/' + location.main_image : '/storage/default_marker_image.png'; // Image de l'événement
-                console.log('Updated Link:', document.getElementById('eventLink').href);
+
+                //window.location.href = '/event/' + location.event_id; // Rediriger vers l'événement sans recharger la page
             });
         });
     }
@@ -554,4 +553,3 @@
     // Charger la carte une fois la page prête
     document.addEventListener("DOMContentLoaded", loadGoogleMaps);
 </script>
-@endpush
